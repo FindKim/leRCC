@@ -1,0 +1,20 @@
+Option that reads all .fasta files in directory
+Option that reads individual .fasta files
+
+Parse each file line by line to get sequences
+Capture length -- nucleotide and amino acid
+	How to calculate length (tbd):
+		- Individual seq length
+		- Aligned seq length (but gaps are included)
+		- length of total sig cooccurance regions
+
+How are the output files for the pValues?
+How are the output files for cooccurance data set?
+
+Calculate %MinMax across co-occuring regions determined by significant pValues
+
+Calculate %%Min across co-occuring regions with %MinMax values
+	- Count # of %values below 0 divided by length (tbd)
+	- Get %
+
+How do I visualize this data set?
