@@ -2,19 +2,29 @@ Option that reads all .fasta files in directory
 Option that reads individual .fasta files
 
 Parse each file line by line to get sequences
-Capture length -- nucleotide and amino acid
+Capture length -- nucelotide or amino acid?
 	How to calculate length (tbd):
 		- Individual seq length
 		- Aligned seq length (but gaps are included)
-		- length of total sig cooccurance regions
+		- Length of total sig coocurance regions
 
 How are the output files for the pValues?
-How are the output files for cooccurance data set?
+How are the output files for the cooccurence data set?
 
 Calculate %MinMax across co-occuring regions determined by significant pValues
 
 Calculate %%Min across co-occuring regions with %MinMax values
 	- Count # of %values below 0 divided by length (tbd)
 	- Get %
+----------------------------------------
+6/19/14 -- Meeting with Scott
 
-How do I visualize this data set?
+Look at runs to see if rare codon clusters (17 codon window) is conserved
+	- Count how long runs are for sig orfs & non-sig
+	- Create a histogram
+
+Created ExtractSigOrf.cpp/.h
+	- Takes in a sigOrf*.txt file
+	- Checks if valid file
+	- Parses file into vector of pairs that store organism name and seq #
+	- Function to return seq # with organism name as argument

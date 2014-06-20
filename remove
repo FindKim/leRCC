@@ -1,0 +1,5 @@
+#!/usr/bin/python -tt
+
+import os
+
+os.system('rm *.o *.pyc *.cf *.mm *.pdf *~')
