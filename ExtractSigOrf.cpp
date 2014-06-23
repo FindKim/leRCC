@@ -10,11 +10,13 @@
 
 #include "ExtractSigOrf.h"
 #include <vector>
+#include <algorithm> // sort
 #include <fstream> 	// reading file; check valid file
 #include <iostream>	// getline
 #include <utility>	// pair, make_pair
 #include <string>
 #include <stdlib.h> // atoi
+#include <sstream>	// ostringstream to convert num to string
 
 using namespace std;
 
@@ -26,6 +28,7 @@ ExtractSigOrf :: ExtractSigOrf (string filename) {
 		pair<string, int> name_number_pair;
 		
 		while (getline(file, line)) {
+//			v_sigOrf.push_back(line);
 			name_number_pair = createPair(line);
 			sigOrf.push_back(name_number_pair);
 		}
@@ -38,6 +41,7 @@ ExtractSigOrf :: ExtractSigOrf (string filename) {
 	} else {
 		cout << filename << " is not a valid file." << endl;
 	}
+	sort_vector_pair(sigOrf);
 }
 ExtractSigOrf :: ExtractSigOrf(){}
 
@@ -53,6 +57,19 @@ int ExtractSigOrf :: get_seq_num (string organism_name) {
 		}
 	}
 	return -1;
+}
+
+
+// After vector is in numerical order
+// Compiles organism name & number into one string for future comparison
+string ExtractSigOrf :: pair_to_string (pair<string, int> name_num_pair) {
+
+	ostringstream ss;
+	string name_num = name_num_pair.first;
+	ss << name_num_pair.second;
+	name_num.append("|");
+	name_num.append(ss.str());
+	return name_num;
 }
 
 
@@ -78,14 +95,30 @@ pair<string, int> ExtractSigOrf :: createPair (string line) {
 }
 
 
+// Sorts vector pair alphabetically
+void ExtractSigOrf :: sort_vector_pair (vector< pair<string, int> > sigOrf) {
+	string name_num;
+	
+	sort (sigOrf.begin(), sigOrf.end());
+	for (vector<pair<string,int> >::iterator it = sigOrf.begin(); it != sigOrf.end(); ++it) {
+//		cout << it->first << ' ' << it->second << endl;
+		name_num = pair_to_string(*it);
+		v_sigOrf.push_back(name_num);
+	}
+	for (vector<string>::iterator it = v_sigOrf.begin(); it!= v_sigOrf.end(); ++it) {
+		cout << *it << endl;
+	}
+}
+
+
 // Test for valid file
 bool ExtractSigOrf :: validFile (string filename) {
 
 	ifstream file(filename.c_str());
 	
 	if (file.good()
-	&& filename.compare(filename.size()-4, filename.size(), ".txt") == 0
-	&& filename.compare(0, 7, "sigOrfs") == 0) {
+	&& filename.compare(filename.size()-4, filename.size(), ".txt") == 0) {
+//	&& filename.compare(0, 7, "sigOrfs") == 0) {
 	
 		return true;
 	}

@@ -21,6 +21,8 @@
 //#include <regex>		// Regex to check for valid file ext WHY DOESN'T THE UNIV SUPPORT C++11?!
 #include "stdlib.h"	// System command
 #include <dirent.h>
+#include <utility>	// pair, make_pair
+#include <stdexcept> // out of range exception
 
 using namespace std;
 
@@ -40,15 +42,17 @@ bool DirectoryExists(const char* pzPath) {
 }
 
 
-
-
 int main() {
 
-	ExtractSigOrf test("Test string");
-	string file;
-	cin >> file;
-	ExtractSigOrf test1(file);
-	test1.get_seq_num(">Drer");
+//	ExtractSigOrf test("Test string");
+//	string file;
+//	cin >> file;
+	ExtractSigOrf test1("/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs/sigOrfs_p.05.txt");
+//	vector< pair<string, int> > sigOrf = test1.get_sigOrf();
+//	vector< pair<string, int> >::iterator it = sigOrf.begin();
+	
+
+//	test1.get_seq_num(">Drer");
 /*
 	vector <string> genomeFileNames;
 	vector<ExtractSequence> genomeSeqs;
@@ -108,22 +112,22 @@ int main() {
 						
 							// Check for valid file extension
 							string file = string(epdf->d_name);
-							if (file.find(".fasta") != string::npos) {
+							try {
+								if (file.compare(file.size()-6, 6, ".fasta") == 0) {
 							
-								// Extract sequences from files, add seqs and file names to vectors
-								ExtractSequence Seqs(file);
-								genomeSeqs.push_back(Seqs);
-								genomeFileNames.push_back(file);
-//								cout << epdf->d_name << endl;
-//								cout << file << endl;
-								filehasbeenread = true;
-							}
+									// Extract sequences from files, add seqs and file names to vectors
+									ExtractSequence Seqs(file);
+									genomeSeqs.push_back(Seqs);
+									genomeFileNames.push_back(file);
+	//								cout << epdf->d_name << endl;
+	//								cout << file << endl;
+									filehasbeenread = true;
+								}
+							} catch (const out_of_range) {}
 						}
 					}
 				
-			  	if (filehasbeenread) {
-  					break;
-  				} else {
+			  	if (!filehasbeenread) {
   					cout << "No file has been read. Enter another file or path directory." << endl;
 		 		 	}
 		
