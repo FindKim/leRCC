@@ -28,3 +28,9 @@ Created ExtractSigOrf.cpp/.h
 	- Checks if valid file
 	- Parses file into vector of pairs that store organism name and seq #
 	- Function to return seq # with organism name as argument
+
+6/23/14
+Created mmsort.cpp to create a copy of Aaron's .mm files but sorted numerical order
+	- Useful for speed later down the pipeline
+	- Can just iterate through the vector of sigOrfs once seq is found & calculated by just comparing string id's
+Began implementing 
