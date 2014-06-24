@@ -37,3 +37,8 @@ Created mmsort.cpp to create a copy of Aaron's .mm files but sorted numerical or
 6/24
 Implemented ExtractMMSeq.cpp
 	- Reads and parses minmax files into vector of id & seq pairs
+Implemented RunLength.cpp
+	- Counts min value runs and places in (non)sig-bins
+	- The mmseq string has to be parsed into vector of ints
+			- Convert string to int value
+			- Use commas as delimiter

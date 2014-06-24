@@ -1,7 +1,7 @@
 all: leRCC
 
-leRCC: main.o ExtractSigOrf.o ExtractMMSeq.o Length_vs_Runs.o
-	g++ main.o ExtractSigOrf.o ExtractMMSeq.o Length_vs_Runs.o -o leRCC
+leRCC: main.o ExtractSigOrf.o ExtractMMSeq.o RunLength.o
+	g++ main.o ExtractSigOrf.o ExtractMMSeq.o RunLength.o -o leRCC
 
 main.o: main.cpp
 	g++ -c main.cpp
@@ -12,8 +12,8 @@ ExtractSigOrf.o: ExtractSigOrf.cpp ExtractSigOrf.h
 ExtractMMSeq.o: ExtractMMSeq.cpp ExtractMMSeq.h
 	g++ -c ExtractMMSeq.cpp
 
-Length_vs_Runs.o: Length_vs_Runs.cpp Length_vs_Runs.h
-	g++ -c Length_vs_Runs.cpp
+RunLength.o: RunLength.cpp RunLength.h
+	g++ -c RunLength.cpp
 
 clean:
 	rm -f *.o *.pyc *~ leRCC

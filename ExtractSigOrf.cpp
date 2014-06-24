@@ -32,18 +32,30 @@ ExtractSigOrf :: ExtractSigOrf (string filename) {
 			name_number_pair = createPair(line);
 			sigOrf.push_back(name_number_pair);
 		}
-		
-//		vector< pair<string, int> >::iterator it = sigOrf.begin();
-//		for (it; it != sigOrf.end(); ++it) {
-//			cout << it->first << ", " << it->second << endl;
-//		}
 
 	} else {
 		cout << filename << " is not a valid file." << endl;
 	}
 	sort_vector_pair(sigOrf);
 }
+
+
 ExtractSigOrf :: ExtractSigOrf(){}
+
+
+// Returns vector of sigOrf strings
+vector<string> ExtractSigOrf :: get_sigOrf() {
+	return v_sigOrf;
+}
+
+// Prints all significant names & seq #
+void ExtractSigOrf :: print_sigOrf() {
+
+	vector<string>::iterator it = v_sigOrf.begin();
+	for (it; it != v_sigOrf.end(); ++it) {
+		cout << *it << endl;
+	}
+}
 
 
 // With an organism name, returns sequence number
@@ -52,7 +64,7 @@ int ExtractSigOrf :: get_seq_num (string organism_name) {
 	vector< pair<string, int> >::iterator it = sigOrf.begin();
 	for (it; it != sigOrf.end(); ++it) {
 		if (it->first == organism_name) {
-			cout << it->first << ", " << it->second << endl;
+//			cout << it->first << ", " << it->second << endl;
 			return it->second;
 		}
 	}
@@ -105,9 +117,9 @@ void ExtractSigOrf :: sort_vector_pair (vector< pair<string, int> > sigOrf) {
 		name_num = pair_to_string(*it);
 		v_sigOrf.push_back(name_num);
 	}
-	for (vector<string>::iterator it = v_sigOrf.begin(); it!= v_sigOrf.end(); ++it) {
-		cout << *it << endl;
-	}
+//	for (vector<string>::iterator it = v_sigOrf.begin(); it!= v_sigOrf.end(); ++it) {
+//		cout << *it << endl;
+//	}
 }
 
 
@@ -116,10 +128,8 @@ bool ExtractSigOrf :: validFile (string filename) {
 
 	ifstream file(filename.c_str());
 	
-	if (file.good()
-	&& filename.compare(filename.size()-4, filename.size(), ".txt") == 0) {
-//	&& filename.compare(0, 7, "sigOrfs") == 0) {
-	
+	if (file.good() &&
+	filename.compare(filename.size()-4, filename.size(), ".txt") == 0) {
 		return true;
 	}
 	return false;
