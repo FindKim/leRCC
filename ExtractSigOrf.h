@@ -2,7 +2,7 @@
 //  ExtractSigOrf.h
 //  
 //
-//  Created by Kim Ngo June 6, 2014.
+//  Created by Kim Ngo June 20, 2014.
 
 //  Parses significant orfeome files into an array of sequence names
 //	SigOrf files are from Aaron's pruning results

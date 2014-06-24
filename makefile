@@ -1,29 +1,19 @@
-all: minmax transpose
+all: leRCC
 
-minmax: main.o Sequence.o ExtractSequence.o CodonFrequency.o MinMax.o ExtractSigOrf.o
-	g++ main.o Sequence.o ExtractSequence.o CodonFrequency.o MinMax.o ExtractSigOrf.o -o minmax
+leRCC: main.o ExtractSigOrf.o ExtractMMSeq.o Length_vs_Runs.o
+	g++ main.o ExtractSigOrf.o ExtractMMSeq.o Length_vs_Runs.o -o leRCC
 
 main.o: main.cpp
 	g++ -c main.cpp
 
-Sequence.o: Sequence.cpp Sequence.h
-	g++ -c Sequence.cpp
-
-ExtractSequence.o: ExtractSequence.cpp ExtractSequence.h
-	g++ -c ExtractSequence.cpp
-
-CodonFrequency.o: CodonFrequency.cpp CodonFrequency.h
-	g++ -g -c CodonFrequency.cpp
-
-MinMax.o: MinMax.cpp MinMax.h
-	g++ -c MinMax.cpp
-
-transpose: transpose.c
-	gcc transpose.c -o transpose
-	# Compiles transpose supporting c prog that transposes .mm file from rows to columns
-
 ExtractSigOrf.o: ExtractSigOrf.cpp ExtractSigOrf.h
 	g++ -c ExtractSigOrf.cpp
 
+ExtractMMSeq.o: ExtractMMSeq.cpp ExtractMMSeq.h
+	g++ -c ExtractMMSeq.cpp
+
+Length_vs_Runs.o: Length_vs_Runs.cpp Length_vs_Runs.h
+	g++ -c Length_vs_Runs.cpp
+
 clean:
-	rm -f *.o *.pyc *~
+	rm -f *.o *.pyc *~ leRCC

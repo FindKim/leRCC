@@ -33,4 +33,7 @@ Created ExtractSigOrf.cpp/.h
 Created mmsort.cpp to create a copy of Aaron's .mm files but sorted numerical order
 	- Useful for speed later down the pipeline
 	- Can just iterate through the vector of sigOrfs once seq is found & calculated by just comparing string id's
-Began implementing 
+
+6/24
+Implemented ExtractMMSeq.cpp
+	- Reads and parses minmax files into vector of id & seq pairs
