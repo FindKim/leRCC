@@ -21,8 +21,8 @@ using namespace std;
 
 RunLength :: RunLength (vector<string>::iterator sigOrf_it, const vector<string>& sigOrf_v, const vector<pair<string, string> >& id_seq) {
 
-	set_sig_runs(100);
-	set_non_sig_runs(100);
+	set_sig_runs(300);
+	set_non_sig_runs(300);
 	count_runs(sigOrf_it, sigOrf_v, id_seq);
 //	cout << endl << endl << "The next organism is " << *sigOrf << endl;
 }
@@ -84,7 +84,8 @@ void RunLength :: add_runs (vector<int>& sum, const vector<int>& runs) {
 
 	vector<int>::iterator sum_it = sum.begin();
 	vector<int>::const_iterator runs_it = runs.begin();
-	for (sum_it; sum_it != sum.end(); ++sum_it, ++runs_it) {
+	
+	for (runs_it; runs_it != runs.end(); ++sum_it, ++runs_it) {
 		*sum_it += *runs_it;
 	}
 }
@@ -144,19 +145,25 @@ void RunLength :: count_runs(vector<string>::iterator sigOrf, const vector<strin
 					++it;
 				else break;
 			}
-//			if (min_run_count > 0)
-//				cout << endl << min_run_count << endl;
+//			if (min_run_count > 0) {
+//				cout << endl << id_seq_it->first << " " << min_run_count << endl;
+//			}
+			
+			if (min_run_count > sig_runs.size() || min_run_count > non_sig_runs.size()) {
+				cout << "local resized here to " << min_run_count+1 << endl;
+				sig_runs.resize(min_run_count+1, 0);
+				non_sig_runs.resize(min_run_count+1, 0);
+			}
 			
 			// If id matches significant orfeome, increment accordingly
 			if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end()) {
 				sig_runs[min_run_count]++;
 				++sigOrf;
-//				cout << "Significant: " << sig_runs[min_run_count] << endl;
-//				cout << "next significant seq: " << *sigOrf << endl << endl;
-
+	//				cout << "Significant: " << sig_runs[min_run_count] << endl;
+	//				cout << "next significant seq: " << *sigOrf << endl << endl;
 			} else {
 				non_sig_runs[min_run_count]++;
-//cout << "Not significant: " << non_sig_runs[min_run_count] << endl;
+	//cout << "Not significant: " << non_sig_runs[min_run_count] << endl;
 			}
 		}
 	}

@@ -53,6 +53,9 @@ main.cpp
 
 6/26
 Sum up all sig_runs and non_sig_runs
-	- Go through each vector<vector<int>> and sum in vector<int>
+	- Go through each run vector and sum in vector<int>
+	- Dynamically increases size of vectors (fixed seg faults)
+
+
 	- Create a histogram of sig_runs and non_sig_runs (gnuplot?)
 Adds all sig & non-sig runs for each sequence to a vector of sums. use vector to print to output file and create histogram on gnuplot.
