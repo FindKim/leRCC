@@ -21,20 +21,22 @@ using namespace std;
 class RunLength {
 
 	public:
-		RunLength(vector<string>::iterator, vector<string>&,
-			vector< pair< string, string> >);
+		RunLength(vector<string>::iterator, const vector<string>&,
+			const vector< pair< string, string> >&);
 			// Calculates min value runs
 			// Compares length of runs for sigorfeomes and non-sig
 		vector<int> get_sig_runs();			// Returns # of runs for sig seqs
 		vector<int> get_non_sig_runs();	// Returns # of runs for non-sig seqs
 		vector<string>::iterator get_it_pos();	// Returns position iterator
+		void add_runs(vector<int>&, const vector<int>&);
+		void print_runs(const vector<int>&, const vector<int>&);
 	
 	private:
 		vector<int> sig_runs;	// min value runs for significant seqs in bins
 		vector<int> non_sig_runs;	// min value runs for non-sig seqs in bins
 		vector<string>::iterator sigOrf_it;	// Position of sigOrf iterator
-		void count_runs(vector<string>::iterator, vector<string>&,
-			vector< pair< string, string> >);
+		void count_runs(vector<string>::iterator, const vector<string>&,
+			const vector< pair< string, string> >&);
 			// Increments (non)sig_runs if vec of sig seqs has consecutive mins
 			// The address of the bin is the length of the run
 			// Value in the addr is the number of runs of that length

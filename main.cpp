@@ -40,7 +40,7 @@ bool directory_exists(const char* pzPath) {
 
 
 // Traverses directory and creates a vector of filenames
-vector<string> traverse_directory(string &directory) {
+vector<string> traverse_directory(string& directory) {
 
 	vector<string> mmfiles;
 	DIR *dpdf;
@@ -60,39 +60,29 @@ vector<string> traverse_directory(string &directory) {
 	return mmfiles;
 }
 
-/*
-	vector<int> tot_sig_runs(100, 0);
-	vector<int> tot_non_sig_runs(100, 0);
-	
-//	vector<ExtractMMSeq>::iterator mm_it = mm_v.begin();
-	vector<RunLength>::iterator rl_it = rl_v.begin();
-	for (rl_it; rl_it != rl_v.end(); ++rl_it) {
-		vector<int> sig_runs = rl_it->get_sig_runs();
-		vector<int> non_sig_runs = rl_it->get_non_sig_runs();
-		
-		vector<int>::iterator sig_runs_it = sig_runs.begin();
-		vector<int>::iterator non_sig_runs_it = non_sig_runs.begin();
-		vector<int>::iterator tot_sig_runs_it = tot_sig_runs.begin();
-		vector<int>::iterator tot_non_sig_runs_it = tot_non_sig_runs.begin();
-		
-		for (; sig_runs_it != sig_runs.end(); ++sig_runs_it, ++non_sig_runs_it, ++tot_sig_runs_it, ++tot_non_sig_runs_it) {
-			*tot_sig_runs_it += *sig_runs_it;
-			*tot_non_sig_runs_it += *non_sig_runs_it;
-		}
+
+// Prints total sig & non-sig runs
+void print_total_run (const vector<int>& tot_sig_runs, const vector<int>& tot_non_sig_runs) {
+
+//	vector<int>
+/*	for (int i = 0; i < 100; i++) {
+		cout << i << " sig: " << tot_sig_runs[i] << " ";
+		cout << "non-sig: " << tot_non_sig_runs[i] << endl;
 	}
-*/
+*/}
 
 
 int main() {
 
 	int i = 0;
-	string directory = "/afs/crc.nd.edu/user/k/kngo/orig_fasta/";
+	string directory = "/afs/crc.nd.edu/user/k/kngo/orig_fasta/subset/";
 	vector<string> mmfiles;
+	vector<int> tot_sig_runs(100, 0);
+	vector<int> tot_non_sig_runs(100, 0);
 	
 	ExtractSigOrf sigOrf("/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs/sigOrfs_p.05.txt");
 	vector<string> sigOrf_v = sigOrf.get_sigOrf();
 	vector<string>::iterator sigOrf_it = sigOrf_v.begin();
-	vector<RunLength> rl_v;
 //	sigOrf.print_sigOrf();
 
 	if (directory_exists(directory.c_str())) {
@@ -110,37 +100,16 @@ int main() {
 			if (mm.valid_file_extension(*file_it)) {
 
 				RunLength compare(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
+
 				vector<int> sr = compare.get_sig_runs();
 				vector<int> nsr = compare.get_non_sig_runs();
-				vector<int>::iterator sr_it = sr.begin();
-				vector<int>::iterator nsr_it = nsr.begin();
-/*				for (sr_it, nsr_it; sr_it != sr.end(); ++sr_it, ++nsr_it) {
-					cout << "sig: " << *sr_it << "\t";
-					cout << "non-sig: " << *nsr_it << endl;
-				}
-*/				sigOrf_it = compare.get_it_pos();
-//				rl_v.push_back(compare);
+				compare.print_runs(sr, nsr);
+				
+				compare.add_runs (tot_sig_runs, compare.get_sig_runs());
+				compare.add_runs (tot_non_sig_runs, compare.get_non_sig_runs());
+				sigOrf_it = compare.get_it_pos();
 			}
 		}
 	}
-	/*
-	vector<int> tot_sig_runs(100, 0);
-	vector<int> tot_non_sig_runs(100, 0);
-	
-//	vector<ExtractMMSeq>::iterator mm_it = mm_v.begin();
-	vector<RunLength>::iterator rl_it = rl_v.begin();
-	for (rl_it; rl_it != rl_v.end(); ++rl_it) {
-		vector<int> sig_runs = rl_it->get_sig_runs();
-		vector<int> non_sig_runs = rl_it->get_non_sig_runs();
-		
-		vector<int>::iterator sig_runs_it = sig_runs.begin();
-		vector<int>::iterator non_sig_runs_it = non_sig_runs.begin();
-		vector<int>::iterator tot_sig_runs_it = tot_sig_runs.begin();
-		vector<int>::iterator tot_non_sig_runs_it = tot_non_sig_runs.begin();
-		
-		for (; sig_runs_it != sig_runs.end(); ++sig_runs_it, ++non_sig_runs_it, ++tot_sig_runs_it, ++tot_non_sig_runs_it) {
-			*tot_sig_runs_it += *sig_runs_it;
-			*tot_non_sig_runs_it += *non_sig_runs_it;
-		}
-	}
-*/}
+	cout << "--------------------------------------------" << endl;
+}
