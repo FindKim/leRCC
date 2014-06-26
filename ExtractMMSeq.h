@@ -24,6 +24,8 @@ class ExtractMMSeq {
 			// Reads and parses file argument into a vector of pairs: id & seq
 		vector<pair<string, string> > get_mm_orfeome();
 			// Returns vector of id & seq
+		bool valid_file_extension(string);
+			// Returns T if valid file ext .fasta.mm.mm
 	
 	private:
 		vector<pair<string, string> > mm_orfeome;
@@ -32,8 +34,6 @@ class ExtractMMSeq {
 			// Reads file and parses every 2 lines into pair of id & seq;add to v
 		void add_id_seq(pair<string, string>);
 			// Adds id&seq pair to mm_orfeome vec
-		bool valid_file_extension(string);
-			// Returns T if valid file ext .fasta.mm.mm
 
 };
 

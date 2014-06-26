@@ -13,6 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include <utility>
+#include <stdexcept> // out of range exception
 
 using namespace std;
 
@@ -22,9 +23,9 @@ ExtractMMSeq :: ExtractMMSeq (string filename) {
 		cout << "Reading " << filename << endl;
 		parse_file(filename);
 		cout << "Finished reading " << filename << endl;
-
-	} else
-		cout << filename << " is an invalid file." << endl;
+	}
+//	} else
+//		cout << filename << " is an invalid file." << endl;
 }
 
 
@@ -54,11 +55,13 @@ bool ExtractMMSeq :: valid_file_extension(string filename) {
 
 	ifstream file(filename.c_str());
 	
-	if (file.good()
-	&& filename.compare(filename.size()-12, filename.size(), ".fasta.mm.mm") == 0) {	
-		return true;
-	}
-	return false;
+	try {
+		if (filename.compare(filename.size()-12, filename.size(), ".fasta.mm.mm") == 0) {
+			return true;
+
+		} else {return false;}
+
+	} catch (const out_of_range) {return false;}
 }
 
 

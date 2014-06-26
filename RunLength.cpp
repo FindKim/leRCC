@@ -19,11 +19,12 @@
 
 using namespace std;
 
-RunLength :: RunLength (vector<string>::iterator sigOrf, vector<pair<string, string> > id_seq) {
+RunLength :: RunLength (vector<string>::iterator sigOrf, vector<string>& sigOrf_v, vector<pair<string, string> > id_seq) {
 
 	set_sig_runs(100);
 	set_non_sig_runs(100);
-	count_runs(sigOrf, id_seq);
+	count_runs(sigOrf, sigOrf_v, id_seq);
+//	cout << endl << endl << "The next organism is " << *sigOrf << endl;
 }
 
 
@@ -49,8 +50,9 @@ vector<int> RunLength :: get_non_sig_runs() {
 }
 
 
+// SEGFAULTS FOR SOME REASON :(
 // Parses minmax sequence string into vector of floats
-vector<float> RunLength :: parse_mm_seq(string mm_seq) {
+vector<float> RunLength :: parse_mm_seq(string &mm_seq) {
 
 	float i;
 	vector<float> mm_number_v;	// str parsed into a vector of floats
@@ -65,25 +67,43 @@ vector<float> RunLength :: parse_mm_seq(string mm_seq) {
 }
 
 
+// Returns the position the significant organism iterator was last at
+vector<string>::iterator RunLength :: get_it_pos() {
+	return sigOrf_it;
+}
+
+
+// Sets where the last position the iterator pointed to
+void RunLength :: set_sigOrf_it_pos(vector<string>::iterator it) {
+	sigOrf_it = it;
+}
+
+
 // Increments (non)sig_runs if vec of sig seqs has consecutive mins
 // The address of the bin is the length of the run
 // Value in the addr is the number of runs of that length
-void RunLength :: count_runs(vector<string>::iterator sigOrf, vector< pair< string, string> > id_seq) {
+void RunLength :: count_runs(vector<string>::iterator sigOrf, vector<string> &sigOrf_v, vector< pair< string, string> > id_seq) {
 
 	int min_run_count = 0;
 
 	// Iterates through pairs in the vector id_seq
 	vector< pair< string, string> >::iterator id_seq_it = id_seq.begin();	
-
-//	while (id_seq_it->first != ">Aaeo|60") {
-//		++id_seq_it;
-//	}++sigOrf;
-//	for (id_seq_it; id_seq_it->first != ">Aaeo|100"; ++id_seq_it) {	
-
 	for (id_seq_it; id_seq_it != id_seq.end(); ++id_seq_it) {
+//		cout << id_seq_it->first << endl;
 
-		// parse the minmax values string by ','
-		vector<float> mm_number_v = parse_mm_seq(id_seq_it->second);
+
+		// Parse the minmax values string by ','
+		vector<float> mm_number_v;
+		int i;
+		stringstream ss(id_seq_it->second);
+	
+		while (ss >> i) {
+			mm_number_v.push_back(i);
+			if (ss.peek() == ',')
+				ss.ignore();
+		}
+		
+		// Iterates through min max values and counts for min runs
 		vector<float>::iterator it = mm_number_v.begin();
 		for (it; it != mm_number_v.end(); ++it) {
 
@@ -95,19 +115,19 @@ void RunLength :: count_runs(vector<string>::iterator sigOrf, vector< pair< stri
 					++it;
 				else break;
 			}
-
+			
 			// If id matches significant orfeome, increment accordingly
-			if (*sigOrf == id_seq_it->first) {
+			if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end()) {
 				sig_runs[min_run_count]++;
 				++sigOrf;
 //				cout << "Significant: " << sig_runs[min_run_count] << endl;
-//				cout << "---------------------------------SIGNIFICANT!!-------------------------------" << endl;
 //				cout << "next significant seq: " << *sigOrf << endl << endl;
 
 			} else {
 				non_sig_runs[min_run_count]++;
-//				cout << "Not significant: " << non_sig_runs[min_run_count] << endl;
+//cout << "Not significant: " << non_sig_runs[min_run_count] << endl;
 			}
 		}
 	}
+	set_sigOrf_it_pos(sigOrf);
 }

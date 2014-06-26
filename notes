@@ -42,3 +42,11 @@ Implemented RunLength.cpp
 	- The mmseq string has to be parsed into vector of ints
 			- Convert string to int value
 			- Use commas as delimiter
+
+6/25
+main.cpp
+	- Traverses directory to get all files
+	- Sorts vector of files
+	- Sequentially calculates run lengths for each file
+		- While comparing with signficant orfeomes
+	- Fixed all memory leaks

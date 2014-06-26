@@ -17,6 +17,7 @@
 #include <string>
 #include <stdlib.h> // atoi
 #include <sstream>	// ostringstream to convert num to string
+#include <stdexcept> // out of range exception
 
 using namespace std;
 
@@ -32,6 +33,7 @@ ExtractSigOrf :: ExtractSigOrf (string filename) {
 			name_number_pair = createPair(line);
 			sigOrf.push_back(name_number_pair);
 		}
+		file.close();
 
 	} else {
 		cout << filename << " is not a valid file." << endl;
@@ -128,9 +130,12 @@ bool ExtractSigOrf :: validFile (string filename) {
 
 	ifstream file(filename.c_str());
 	
-	if (file.good() &&
-	filename.compare(filename.size()-4, filename.size(), ".txt") == 0) {
-		return true;
-	}
-	return false;
+	try {
+		if (file.good() &&
+		filename.compare(filename.size()-4, filename.size(), ".txt") == 0) {
+			return true;
+
+		} else { return false; }
+
+	} catch (const out_of_range) {return false;}
 }

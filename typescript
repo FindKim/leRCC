@@ -1,4 +1,8 @@
-Script started on Tue 24 Jun 2014 02:43:49 PM EDT
+Script started on Wed 25 Jun 2014 02:37:49 PM EDT
+]0;kngo@newcell:~/leRCC[kngo@newcell ~/leRCC]$ exit./leRCC[25Gexit[K[Kexit./leRCC[25Gstop[Kend[Kstop./leRCC[25Gexit[K[Kmake
+g++ -c main.cpp
+g++ main.o ExtractSigOrf.o ExtractMMSeq.o RunLength.o -o leRCC
+]0;kngo@newcell:~/leRCC[kngo@newcell ~/leRCC]$ ./leRCC 
 >Aaeo|32
 >Aaeo|64
 >Aaeo|77
@@ -93663,15 +93667,1648 @@ Script started on Tue 24 Jun 2014 02:43:49 PM EDT
 >Ypes|3992
 >Ypes|3995
 >Ypes|3998
-/afs/crc.nd.edu/user/k/kngo/orig_fasta/Aaeo.fasta.mm is an invalid file.
-Reading /afs/crc.nd.edu/user/k/kngo/orig_fasta/Aaeo.fasta.mm.mm
-Finished reading /afs/crc.nd.edu/user/k/kngo/orig_fasta/Aaeo.fasta.mm.mm
->Aaeo|32
-]0;kngo@newcell:~/leRCC[kngo@newcell ~/leRCC]$ end
-end: Not in while/foreach.
-]0;kngo@newcell:~/leRCC[kngo@newcell ~/leRCC]$ stop
-stop: Too few arguments.
+Reading /afs/crc.nd.edu/user/k/kngo/orig_fasta/subset/Aaeo.fasta.mm.mm
+Finished reading /afs/crc.nd.edu/user/k/kngo/orig_fasta/subset/Aaeo.fasta.mm.mm
+next significant seq: >Aaeo|64
+
+next significant seq: >Aaeo|77
+
+next significant seq: >Aaeo|89
+
+next significant seq: >Aaeo|91
+
+next significant seq: >Aaeo|98
+
+next significant seq: >Aaeo|101
+
+next significant seq: >Aaeo|124
+
+next significant seq: >Aaeo|127
+
+next significant seq: >Aaeo|139
+
+next significant seq: >Aaeo|162
+
+next significant seq: >Aaeo|181
+
+next significant seq: >Aaeo|185
+
+next significant seq: >Aaeo|189
+
+next significant seq: >Aaeo|195
+
+next significant seq: >Aaeo|196
+
+next significant seq: >Aaeo|201
+
+next significant seq: >Aaeo|226
+
+next significant seq: >Aaeo|236
+
+next significant seq: >Aaeo|243
+
+next significant seq: >Aaeo|272
+
+next significant seq: >Aaeo|285
+
+next significant seq: >Aaeo|347
+
+next significant seq: >Aaeo|369
+
+next significant seq: >Aaeo|416
+
+next significant seq: >Aaeo|425
+
+next significant seq: >Aaeo|429
+
+next significant seq: >Aaeo|432
+
+next significant seq: >Aaeo|444
+
+next significant seq: >Aaeo|467
+
+next significant seq: >Aaeo|474
+
+next significant seq: >Aaeo|513
+
+next significant seq: >Aaeo|530
+
+next significant seq: >Aaeo|534
+
+next significant seq: >Aaeo|535
+
+next significant seq: >Aaeo|537
+
+next significant seq: >Aaeo|540
+
+next significant seq: >Aaeo|556
+
+next significant seq: >Aaeo|568
+
+next significant seq: >Aaeo|591
+
+next significant seq: >Aaeo|592
+
+next significant seq: >Aaeo|604
+
+next significant seq: >Aaeo|625
+
+next significant seq: >Aaeo|629
+
+next significant seq: >Aaeo|639
+
+next significant seq: >Aaeo|640
+
+next significant seq: >Aaeo|650
+
+next significant seq: >Aaeo|668
+
+next significant seq: >Aaeo|686
+
+next significant seq: >Aaeo|699
+
+next significant seq: >Aaeo|703
+
+next significant seq: >Aaeo|723
+
+next significant seq: >Aaeo|725
+
+next significant seq: >Aaeo|740
+
+next significant seq: >Aaeo|754
+
+next significant seq: >Aaeo|772
+
+next significant seq: >Aaeo|782
+
+next significant seq: >Aaeo|783
+
+next significant seq: >Aaeo|793
+
+next significant seq: >Aaeo|804
+
+next significant seq: >Aaeo|812
+
+next significant seq: >Aaeo|834
+
+next significant seq: >Aaeo|868
+
+next significant seq: >Aaeo|869
+
+next significant seq: >Aaeo|871
+
+next significant seq: >Aaeo|880
+
+next significant seq: >Aaeo|883
+
+next significant seq: >Aaeo|884
+
+next significant seq: >Aaeo|898
+
+next significant seq: >Aaeo|907
+
+next significant seq: >Aaeo|950
+
+next significant seq: >Aaeo|951
+
+next significant seq: >Aaeo|955
+
+next significant seq: >Aaeo|963
+
+next significant seq: >Aaeo|977
+
+next significant seq: >Aaeo|979
+
+next significant seq: >Aaeo|982
+
+next significant seq: >Aaeo|988
+
+next significant seq: >Aaeo|992
+
+next significant seq: >Aaeo|1008
+
+next significant seq: >Aaeo|1041
+
+next significant seq: >Aaeo|1110
+
+next significant seq: >Aaeo|1111
+
+next significant seq: >Aaeo|1116
+
+next significant seq: >Aaeo|1152
+
+next significant seq: >Aaeo|1153
+
+next significant seq: >Aaeo|1174
+
+next significant seq: >Aaeo|1181
+
+next significant seq: >Aaeo|1223
+
+next significant seq: >Aaeo|1236
+
+next significant seq: >Aaeo|1256
+
+next significant seq: >Aaeo|1268
+
+next significant seq: >Aaeo|1270
+
+next significant seq: >Aaeo|1302
+
+next significant seq: >Aaeo|1303
+
+next significant seq: >Aaeo|1305
+
+next significant seq: >Aaeo|1308
+
+next significant seq: >Aaeo|1320
+
+next significant seq: >Aaeo|1326
+
+next significant seq: >Aaeo|1329
+
+next significant seq: >Aaeo|1337
+
+next significant seq: >Aaeo|1362
+
+next significant seq: >Aaeo|1375
+
+next significant seq: >Aaeo|1397
+
+next significant seq: >Aaeo|1400
+
+next significant seq: >Aaeo|1406
+
+next significant seq: >Aaeo|1429
+
+next significant seq: >Aaeo|1442
+
+next significant seq: >Aaeo|1471
+
+next significant seq: >Aaeo|1490
+
+next significant seq: >Aaeo|1491
+
+next significant seq: >Aaeo|1500
+
+next significant seq: >Aaeo|1501
+
+next significant seq: >Aaeo|1504
+
+next significant seq: >Aaeo|1513
+
+next significant seq: >Aaeo|1516
+
+next significant seq: >Aaeo|1528
+
+next significant seq: >Aaeo|1543
+
+next significant seq: >Aboo|1
+
+Reading /afs/crc.nd.edu/user/k/kngo/orig_fasta/subset/Aboo.fasta.mm.mm
+Finished reading /afs/crc.nd.edu/user/k/kngo/orig_fasta/subset/Aboo.fasta.mm.mm
+next significant seq: >Aboo|3
+
+next significant seq: >Aboo|6
+
+next significant seq: >Aboo|16
+
+next significant seq: >Aboo|24
+
+next significant seq: >Aboo|28
+
+next significant seq: >Aboo|37
+
+next significant seq: >Aboo|38
+
+next significant seq: >Aboo|40
+
+next significant seq: >Aboo|42
+
+next significant seq: >Aboo|43
+
+next significant seq: >Aboo|54
+
+next significant seq: >Aboo|58
+
+next significant seq: >Aboo|59
+
+next significant seq: >Aboo|61
+
+next significant seq: >Aboo|63
+
+next significant seq: >Aboo|64
+
+next significant seq: >Aboo|75
+
+next significant seq: >Aboo|76
+
+next significant seq: >Aboo|93
+
+next significant seq: >Aboo|94
+
+next significant seq: >Aboo|96
+
+next significant seq: >Aboo|100
+
+next significant seq: >Aboo|102
+
+next significant seq: >Aboo|116
+
+next significant seq: >Aboo|123
+
+next significant seq: >Aboo|124
+
+next significant seq: >Aboo|129
+
+next significant seq: >Aboo|132
+
+next significant seq: >Aboo|142
+
+next significant seq: >Aboo|143
+
+next significant seq: >Aboo|149
+
+next significant seq: >Aboo|150
+
+next significant seq: >Aboo|151
+
+next significant seq: >Aboo|156
+
+next significant seq: >Aboo|160
+
+next significant seq: >Aboo|163
+
+next significant seq: >Aboo|167
+
+next significant seq: >Aboo|170
+
+next significant seq: >Aboo|177
+
+next significant seq: >Aboo|181
+
+next significant seq: >Aboo|187
+
+next significant seq: >Aboo|195
+
+next significant seq: >Aboo|197
+
+next significant seq: >Aboo|205
+
+next significant seq: >Aboo|213
+
+next significant seq: >Aboo|217
+
+next significant seq: >Aboo|218
+
+next significant seq: >Aboo|225
+
+next significant seq: >Aboo|226
+
+next significant seq: >Aboo|230
+
+next significant seq: >Aboo|231
+
+next significant seq: >Aboo|234
+
+next significant seq: >Aboo|236
+
+next significant seq: >Aboo|241
+
+next significant seq: >Aboo|243
+
+next significant seq: >Aboo|249
+
+next significant seq: >Aboo|253
+
+next significant seq: >Aboo|254
+
+next significant seq: >Aboo|255
+
+next significant seq: >Aboo|266
+
+next significant seq: >Aboo|268
+
+next significant seq: >Aboo|273
+
+next significant seq: >Aboo|276
+
+next significant seq: >Aboo|277
+
+next significant seq: >Aboo|279
+
+next significant seq: >Aboo|283
+
+next significant seq: >Aboo|286
+
+next significant seq: >Aboo|287
+
+next significant seq: >Aboo|289
+
+next significant seq: >Aboo|296
+
+next significant seq: >Aboo|300
+
+next significant seq: >Aboo|304
+
+next significant seq: >Aboo|306
+
+next significant seq: >Aboo|312
+
+next significant seq: >Aboo|315
+
+next significant seq: >Aboo|318
+
+next significant seq: >Aboo|323
+
+next significant seq: >Aboo|329
+
+next significant seq: >Aboo|337
+
+next significant seq: >Aboo|350
+
+next significant seq: >Aboo|353
+
+next significant seq: >Aboo|361
+
+next significant seq: >Aboo|368
+
+next significant seq: >Aboo|374
+
+next significant seq: >Aboo|393
+
+next significant seq: >Aboo|402
+
+next significant seq: >Aboo|403
+
+next significant seq: >Aboo|406
+
+next significant seq: >Aboo|412
+
+next significant seq: >Aboo|413
+
+next significant seq: >Aboo|414
+
+next significant seq: >Aboo|419
+
+next significant seq: >Aboo|423
+
+next significant seq: >Aboo|430
+
+next significant seq: >Aboo|432
+
+next significant seq: >Aboo|448
+
+next significant seq: >Aboo|450
+
+next significant seq: >Aboo|453
+
+next significant seq: >Aboo|456
+
+next significant seq: >Aboo|459
+
+next significant seq: >Aboo|460
+
+next significant seq: >Aboo|463
+
+next significant seq: >Aboo|466
+
+next significant seq: >Aboo|469
+
+next significant seq: >Aboo|471
+
+next significant seq: >Aboo|472
+
+next significant seq: >Aboo|474
+
+next significant seq: >Aboo|477
+
+next significant seq: >Aboo|480
+
+next significant seq: >Aboo|491
+
+next significant seq: >Aboo|498
+
+next significant seq: >Aboo|503
+
+next significant seq: >Aboo|507
+
+next significant seq: >Aboo|509
+
+next significant seq: >Aboo|511
+
+next significant seq: >Aboo|512
+
+next significant seq: >Aboo|516
+
+next significant seq: >Aboo|517
+
+next significant seq: >Aboo|521
+
+next significant seq: >Aboo|524
+
+next significant seq: >Aboo|527
+
+next significant seq: >Aboo|528
+
+next significant seq: >Aboo|531
+
+next significant seq: >Aboo|533
+
+next significant seq: >Aboo|534
+
+next significant seq: >Aboo|536
+
+next significant seq: >Aboo|540
+
+next significant seq: >Aboo|544
+
+next significant seq: >Aboo|552
+
+next significant seq: >Aboo|558
+
+next significant seq: >Aboo|564
+
+next significant seq: >Aboo|570
+
+next significant seq: >Aboo|571
+
+next significant seq: >Aboo|576
+
+next significant seq: >Aboo|578
+
+next significant seq: >Aboo|588
+
+next significant seq: >Aboo|593
+
+next significant seq: >Aboo|596
+
+next significant seq: >Aboo|597
+
+next significant seq: >Aboo|598
+
+next significant seq: >Aboo|599
+
+next significant seq: >Aboo|602
+
+next significant seq: >Aboo|606
+
+next significant seq: >Aboo|608
+
+next significant seq: >Aboo|609
+
+next significant seq: >Aboo|610
+
+next significant seq: >Aboo|611
+
+next significant seq: >Aboo|615
+
+next significant seq: >Aboo|620
+
+next significant seq: >Aboo|621
+
+next significant seq: >Aboo|623
+
+next significant seq: >Aboo|635
+
+next significant seq: >Aboo|642
+
+next significant seq: >Aboo|649
+
+next significant seq: >Aboo|653
+
+next significant seq: >Aboo|654
+
+next significant seq: >Aboo|655
+
+next significant seq: >Aboo|658
+
+next significant seq: >Aboo|659
+
+next significant seq: >Aboo|676
+
+next significant seq: >Aboo|677
+
+next significant seq: >Aboo|678
+
+next significant seq: >Aboo|679
+
+next significant seq: >Aboo|680
+
+next significant seq: >Aboo|682
+
+next significant seq: >Aboo|688
+
+next significant seq: >Aboo|691
+
+next significant seq: >Aboo|699
+
+next significant seq: >Aboo|702
+
+next significant seq: >Aboo|704
+
+next significant seq: >Aboo|711
+
+next significant seq: >Aboo|715
+
+next significant seq: >Aboo|716
+
+next significant seq: >Aboo|719
+
+next significant seq: >Aboo|720
+
+next significant seq: >Aboo|724
+
+next significant seq: >Aboo|729
+
+next significant seq: >Aboo|731
+
+next significant seq: >Aboo|738
+
+next significant seq: >Aboo|742
+
+next significant seq: >Aboo|743
+
+next significant seq: >Aboo|745
+
+next significant seq: >Aboo|747
+
+next significant seq: >Aboo|751
+
+next significant seq: >Aboo|752
+
+next significant seq: >Aboo|754
+
+next significant seq: >Aboo|759
+
+next significant seq: >Aboo|763
+
+next significant seq: >Aboo|766
+
+next significant seq: >Aboo|767
+
+next significant seq: >Aboo|768
+
+next significant seq: >Aboo|772
+
+next significant seq: >Aboo|774
+
+next significant seq: >Aboo|777
+
+next significant seq: >Aboo|783
+
+next significant seq: >Aboo|785
+
+next significant seq: >Aboo|786
+
+next significant seq: >Aboo|788
+
+next significant seq: >Aboo|810
+
+next significant seq: >Aboo|812
+
+next significant seq: >Aboo|826
+
+next significant seq: >Aboo|827
+
+next significant seq: >Aboo|830
+
+next significant seq: >Aboo|839
+
+next significant seq: >Aboo|845
+
+next significant seq: >Aboo|850
+
+next significant seq: >Aboo|858
+
+next significant seq: >Aboo|860
+
+next significant seq: >Aboo|863
+
+next significant seq: >Aboo|865
+
+next significant seq: >Aboo|867
+
+next significant seq: >Aboo|872
+
+next significant seq: >Aboo|875
+
+next significant seq: >Aboo|881
+
+next significant seq: >Aboo|883
+
+next significant seq: >Aboo|885
+
+next significant seq: >Aboo|886
+
+next significant seq: >Aboo|889
+
+next significant seq: >Aboo|893
+
+next significant seq: >Aboo|899
+
+next significant seq: >Aboo|904
+
+next significant seq: >Aboo|908
+
+next significant seq: >Aboo|914
+
+next significant seq: >Aboo|918
+
+next significant seq: >Aboo|924
+
+next significant seq: >Aboo|926
+
+next significant seq: >Aboo|930
+
+next significant seq: >Aboo|933
+
+next significant seq: >Aboo|939
+
+next significant seq: >Aboo|940
+
+next significant seq: >Aboo|950
+
+next significant seq: >Aboo|955
+
+next significant seq: >Aboo|959
+
+next significant seq: >Aboo|965
+
+next significant seq: >Aboo|972
+
+next significant seq: >Aboo|979
+
+next significant seq: >Aboo|980
+
+next significant seq: >Aboo|981
+
+next significant seq: >Aboo|985
+
+next significant seq: >Aboo|986
+
+next significant seq: >Aboo|988
+
+next significant seq: >Aboo|1006
+
+next significant seq: >Aboo|1012
+
+next significant seq: >Aboo|1018
+
+next significant seq: >Aboo|1025
+
+next significant seq: >Aboo|1052
+
+next significant seq: >Aboo|1062
+
+next significant seq: >Aboo|1067
+
+next significant seq: >Aboo|1069
+
+next significant seq: >Aboo|1076
+
+next significant seq: >Aboo|1080
+
+next significant seq: >Aboo|1081
+
+next significant seq: >Aboo|1082
+
+next significant seq: >Aboo|1083
+
+next significant seq: >Aboo|1085
+
+next significant seq: >Aboo|1095
+
+next significant seq: >Aboo|1097
+
+next significant seq: >Aboo|1102
+
+next significant seq: >Aboo|1106
+
+next significant seq: >Aboo|1109
+
+next significant seq: >Aboo|1111
+
+next significant seq: >Aboo|1112
+
+next significant seq: >Aboo|1115
+
+next significant seq: >Aboo|1116
+
+next significant seq: >Aboo|1117
+
+next significant seq: >Aboo|1118
+
+next significant seq: >Aboo|1119
+
+next significant seq: >Aboo|1122
+
+next significant seq: >Aboo|1128
+
+next significant seq: >Aboo|1129
+
+next significant seq: >Aboo|1130
+
+next significant seq: >Aboo|1132
+
+next significant seq: >Aboo|1135
+
+next significant seq: >Aboo|1141
+
+next significant seq: >Aboo|1143
+
+next significant seq: >Aboo|1145
+
+next significant seq: >Aboo|1146
+
+next significant seq: >Aboo|1154
+
+next significant seq: >Aboo|1164
+
+next significant seq: >Aboo|1168
+
+next significant seq: >Aboo|1169
+
+next significant seq: >Aboo|1171
+
+next significant seq: >Aboo|1178
+
+next significant seq: >Aboo|1181
+
+next significant seq: >Aboo|1182
+
+next significant seq: >Aboo|1187
+
+next significant seq: >Aboo|1198
+
+next significant seq: >Aboo|1199
+
+next significant seq: >Aboo|1203
+
+next significant seq: >Aboo|1205
+
+next significant seq: >Aboo|1215
+
+next significant seq: >Aboo|1218
+
+next significant seq: >Aboo|1219
+
+next significant seq: >Aboo|1220
+
+next significant seq: >Aboo|1223
+
+next significant seq: >Aboo|1224
+
+next significant seq: >Aboo|1226
+
+next significant seq: >Aboo|1227
+
+next significant seq: >Aboo|1228
+
+next significant seq: >Aboo|1240
+
+next significant seq: >Aboo|1250
+
+next significant seq: >Aboo|1262
+
+next significant seq: >Aboo|1264
+
+next significant seq: >Aboo|1266
+
+next significant seq: >Aboo|1267
+
+next significant seq: >Aboo|1269
+
+next significant seq: >Aboo|1270
+
+next significant seq: >Aboo|1271
+
+next significant seq: >Aboo|1281
+
+next significant seq: >Aboo|1286
+
+next significant seq: >Aboo|1288
+
+next significant seq: >Aboo|1289
+
+next significant seq: >Aboo|1292
+
+next significant seq: >Aboo|1293
+
+next significant seq: >Aboo|1306
+
+next significant seq: >Aboo|1308
+
+next significant seq: >Aboo|1309
+
+next significant seq: >Aboo|1313
+
+next significant seq: >Aboo|1318
+
+next significant seq: >Aboo|1319
+
+next significant seq: >Aboo|1322
+
+next significant seq: >Aboo|1324
+
+next significant seq: >Aboo|1326
+
+next significant seq: >Aboo|1327
+
+next significant seq: >Aboo|1328
+
+next significant seq: >Aboo|1332
+
+next significant seq: >Aboo|1333
+
+next significant seq: >Aboo|1334
+
+next significant seq: >Aboo|1345
+
+next significant seq: >Aboo|1350
+
+next significant seq: >Aboo|1352
+
+next significant seq: >Aboo|1353
+
+next significant seq: >Aboo|1357
+
+next significant seq: >Aboo|1362
+
+next significant seq: >Aboo|1366
+
+next significant seq: >Aboo|1367
+
+next significant seq: >Aboo|1378
+
+next significant seq: >Aboo|1379
+
+next significant seq: >Aboo|1389
+
+next significant seq: >Aboo|1394
+
+next significant seq: >Aboo|1395
+
+next significant seq: >Aboo|1397
+
+next significant seq: >Aboo|1399
+
+next significant seq: >Aboo|1402
+
+next significant seq: >Aboo|1410
+
+next significant seq: >Aboo|1411
+
+next significant seq: >Aboo|1421
+
+next significant seq: >Aboo|1426
+
+next significant seq: >Aboo|1428
+
+next significant seq: >Aboo|1433
+
+next significant seq: >Aboo|1435
+
+next significant seq: >Aboo|1437
+
+next significant seq: >Aboo|1440
+
+next significant seq: >Aboo|1442
+
+next significant seq: >Aboo|1443
+
+next significant seq: >Aboo|1444
+
+next significant seq: >Aboo|1448
+
+next significant seq: >Aboo|1449
+
+next significant seq: >Aboo|1450
+
+next significant seq: >Aboo|1454
+
+next significant seq: >Aboo|1459
+
+next significant seq: >Aboo|1463
+
+next significant seq: >Aboo|1477
+
+next significant seq: >Aboo|1486
+
+next significant seq: >Aboo|1488
+
+next significant seq: >Aboo|1490
+
+next significant seq: >Aboo|1494
+
+next significant seq: >Aboo|1504
+
+next significant seq: >Aboo|1506
+
+next significant seq: >Aboo|1515
+
+next significant seq: >Aboo|1520
+
+next significant seq: >Aboo|1525
+
+next significant seq: >Aboo|1528
+
+next significant seq: >Aboo|1529
+
+next significant seq: >Aboo|1530
+
+next significant seq: >Aboo|1539
+
+next significant seq: >Aboo|1541
+
+next significant seq: >Aboo|1542
+
+next significant seq: >Aful|14
+
+Reading /afs/crc.nd.edu/user/k/kngo/orig_fasta/subset/Aful.fasta.mm.mm
+Finished reading /afs/crc.nd.edu/user/k/kngo/orig_fasta/subset/Aful.fasta.mm.mm
+next significant seq: >Aful|35
+
+next significant seq: >Aful|40
+
+next significant seq: >Aful|43
+
+next significant seq: >Aful|44
+
+next significant seq: >Aful|49
+
+next significant seq: >Aful|50
+
+next significant seq: >Aful|52
+
+next significant seq: >Aful|73
+
+next significant seq: >Aful|85
+
+next significant seq: >Aful|93
+
+next significant seq: >Aful|105
+
+next significant seq: >Aful|106
+
+next significant seq: >Aful|107
+
+next significant seq: >Aful|108
+
+next significant seq: >Aful|110
+
+next significant seq: >Aful|126
+
+next significant seq: >Aful|127
+
+next significant seq: >Aful|137
+
+next significant seq: >Aful|149
+
+next significant seq: >Aful|150
+
+next significant seq: >Aful|151
+
+next significant seq: >Aful|161
+
+next significant seq: >Aful|164
+
+next significant seq: >Aful|168
+
+next significant seq: >Aful|193
+
+next significant seq: >Aful|196
+
+next significant seq: >Aful|201
+
+next significant seq: >Aful|209
+
+next significant seq: >Aful|236
+
+next significant seq: >Aful|237
+
+next significant seq: >Aful|239
+
+next significant seq: >Aful|243
+
+next significant seq: >Aful|250
+
+next significant seq: >Aful|252
+
+next significant seq: >Aful|255
+
+next significant seq: >Aful|257
+
+next significant seq: >Aful|258
+
+next significant seq: >Aful|261
+
+next significant seq: >Aful|272
+
+next significant seq: >Aful|279
+
+next significant seq: >Aful|282
+
+next significant seq: >Aful|285
+
+next significant seq: >Aful|287
+
+next significant seq: >Aful|316
+
+next significant seq: >Aful|318
+
+next significant seq: >Aful|319
+
+next significant seq: >Aful|324
+
+next significant seq: >Aful|325
+
+next significant seq: >Aful|330
+
+next significant seq: >Aful|337
+
+next significant seq: >Aful|341
+
+next significant seq: >Aful|346
+
+next significant seq: >Aful|354
+
+next significant seq: >Aful|358
+
+next significant seq: >Aful|361
+
+next significant seq: >Aful|365
+
+next significant seq: >Aful|366
+
+next significant seq: >Aful|377
+
+next significant seq: >Aful|378
+
+next significant seq: >Aful|379
+
+next significant seq: >Aful|380
+
+next significant seq: >Aful|385
+
+next significant seq: >Aful|394
+
+next significant seq: >Aful|398
+
+next significant seq: >Aful|400
+
+next significant seq: >Aful|412
+
+next significant seq: >Aful|425
+
+next significant seq: >Aful|429
+
+next significant seq: >Aful|435
+
+next significant seq: >Aful|436
+
+next significant seq: >Aful|438
+
+next significant seq: >Aful|455
+
+next significant seq: >Aful|456
+
+next significant seq: >Aful|458
+
+next significant seq: >Aful|465
+
+next significant seq: >Aful|468
+
+next significant seq: >Aful|469
+
+next significant seq: >Aful|472
+
+next significant seq: >Aful|474
+
+next significant seq: >Aful|481
+
+next significant seq: >Aful|487
+
+next significant seq: >Aful|491
+
+next significant seq: >Aful|498
+
+next significant seq: >Aful|499
+
+next significant seq: >Aful|500
+
+next significant seq: >Aful|501
+
+next significant seq: >Aful|503
+
+next significant seq: >Aful|504
+
+next significant seq: >Aful|506
+
+next significant seq: >Aful|511
+
+next significant seq: >Aful|514
+
+next significant seq: >Aful|515
+
+next significant seq: >Aful|516
+
+next significant seq: >Aful|518
+
+next significant seq: >Aful|519
+
+next significant seq: >Aful|522
+
+next significant seq: >Aful|526
+
+next significant seq: >Aful|527
+
+next significant seq: >Aful|531
+
+next significant seq: >Aful|541
+
+next significant seq: >Aful|569
+
+next significant seq: >Aful|582
+
+next significant seq: >Aful|585
+
+next significant seq: >Aful|598
+
+next significant seq: >Aful|612
+
+next significant seq: >Aful|615
+
+next significant seq: >Aful|617
+
+next significant seq: >Aful|628
+
+next significant seq: >Aful|635
+
+next significant seq: >Aful|638
+
+next significant seq: >Aful|644
+
+next significant seq: >Aful|646
+
+next significant seq: >Aful|647
+
+next significant seq: >Aful|648
+
+next significant seq: >Aful|650
+
+next significant seq: >Aful|657
+
+next significant seq: >Aful|662
+
+next significant seq: >Aful|672
+
+next significant seq: >Aful|677
+
+next significant seq: >Aful|679
+
+next significant seq: >Aful|685
+
+next significant seq: >Aful|688
+
+next significant seq: >Aful|694
+
+next significant seq: >Aful|698
+
+next significant seq: >Aful|702
+
+next significant seq: >Aful|715
+
+next significant seq: >Aful|716
+
+next significant seq: >Aful|718
+
+next significant seq: >Aful|719
+
+next significant seq: >Aful|724
+
+next significant seq: >Aful|725
+
+next significant seq: >Aful|727
+
+next significant seq: >Aful|734
+
+next significant seq: >Aful|735
+
+next significant seq: >Aful|736
+
+next significant seq: >Aful|739
+
+next significant seq: >Aful|742
+
+next significant seq: >Aful|743
+
+next significant seq: >Aful|770
+
+next significant seq: >Aful|773
+
+next significant seq: >Aful|782
+
+next significant seq: >Aful|791
+
+next significant seq: >Aful|792
+
+next significant seq: >Aful|800
+
+next significant seq: >Aful|801
+
+next significant seq: >Aful|803
+
+next significant seq: >Aful|813
+
+next significant seq: >Aful|814
+
+next significant seq: >Aful|815
+
+next significant seq: >Aful|826
+
+next significant seq: >Aful|830
+
+next significant seq: >Aful|838
+
+next significant seq: >Aful|839
+
+next significant seq: >Aful|840
+
+next significant seq: >Aful|860
+
+next significant seq: >Aful|868
+
+next significant seq: >Aful|871
+
+next significant seq: >Aful|873
+
+next significant seq: >Aful|874
+
+next significant seq: >Aful|878
+
+next significant seq: >Aful|879
+
+next significant seq: >Aful|881
+
+next significant seq: >Aful|890
+
+next significant seq: >Aful|891
+
+next significant seq: >Aful|895
+
+next significant seq: >Aful|900
+
+next significant seq: >Aful|911
+
+next significant seq: >Aful|919
+
+next significant seq: >Aful|920
+
+next significant seq: >Aful|921
+
+next significant seq: >Aful|960
+
+next significant seq: >Aful|963
+
+next significant seq: >Aful|976
+
+next significant seq: >Aful|982
+
+next significant seq: >Aful|985
+
+next significant seq: >Aful|987
+
+next significant seq: >Aful|991
+
+next significant seq: >Aful|997
+
+next significant seq: >Aful|1012
+
+next significant seq: >Aful|1014
+
+next significant seq: >Aful|1021
+
+next significant seq: >Aful|1022
+
+next significant seq: >Aful|1031
+
+next significant seq: >Aful|1036
+
+next significant seq: >Aful|1047
+
+next significant seq: >Aful|1053
+
+next significant seq: >Aful|1060
+
+next significant seq: >Aful|1078
+
+next significant seq: >Aful|1084
+
+next significant seq: >Aful|1085
+
+next significant seq: >Aful|1091
+
+next significant seq: >Aful|1093
+
+next significant seq: >Aful|1099
+
+next significant seq: >Aful|1102
+
+next significant seq: >Aful|1112
+
+next significant seq: >Aful|1123
+
+next significant seq: >Aful|1125
+
+next significant seq: >Aful|1126
+
+next significant seq: >Aful|1128
+
+next significant seq: >Aful|1129
+
+next significant seq: >Aful|1130
+
+next significant seq: >Aful|1131
+
+next significant seq: >Aful|1133
+
+next significant seq: >Aful|1134
+
+next significant seq: >Aful|1135
+
+next significant seq: >Aful|1136
+
+next significant seq: >Aful|1138
+
+next significant seq: >Aful|1147
+
+next significant seq: >Aful|1166
+
+next significant seq: >Aful|1167
+
+next significant seq: >Aful|1176
+
+next significant seq: >Aful|1181
+
+next significant seq: >Aful|1187
+
+next significant seq: >Aful|1190
+
+next significant seq: >Aful|1193
+
+next significant seq: >Aful|1194
+
+next significant seq: >Aful|1197
+
+next significant seq: >Aful|1198
+
+next significant seq: >Aful|1201
+
+next significant seq: >Aful|1202
+
+next significant seq: >Aful|1204
+
+next significant seq: >Aful|1209
+
+next significant seq: >Aful|1211
+
+next significant seq: >Aful|1221
+
+next significant seq: >Aful|1228
+
+next significant seq: >Aful|1229
+
+next significant seq: >Aful|1230
+
+next significant seq: >Aful|1234
+
+next significant seq: >Aful|1238
+
+next significant seq: >Aful|1244
+
+next significant seq: >Aful|1251
+
+next significant seq: >Aful|1252
+
+next significant seq: >Aful|1257
+
+next significant seq: >Aful|1265
+
+next significant seq: >Aful|1266
+
+next significant seq: >Aful|1268
+
+next significant seq: >Aful|1274
+
+next significant seq: >Aful|1275
+
+next significant seq: >Aful|1288
+
+next significant seq: >Aful|1293
+
+next significant seq: >Aful|1311
+
+next significant seq: >Aful|1314
+
+next significant seq: >Aful|1317
+
+next significant seq: >Aful|1319
+
+next significant seq: >Aful|1325
+
+next significant seq: >Aful|1327
+
+next significant seq: >Aful|1335
+
+next significant seq: >Aful|1340
+
+next significant seq: >Aful|1345
+
+next significant seq: >Aful|1346
+
+next significant seq: >Aful|1347
+
+next significant seq: >Aful|1348
+
+next significant seq: >Aful|1349
+
+next significant seq: >Aful|1353
+
+next significant seq: >Aful|1354
+
+next significant seq: >Aful|1355
+
+next significant seq: >Aful|1356
+
+next significant seq: >Aful|1359
+
+next significant seq: >Aful|1364
+
+next significant seq: >Aful|1370
+
+next significant seq: >Aful|1381
+
+next significant seq: >Aful|1382
+
+next significant seq: >Aful|1384
+
+next significant seq: >Aful|1386
+
+next significant seq: >Aful|1388
+
+next significant seq: >Aful|1390
+
+next significant seq: >Aful|1403
+
+next significant seq: >Aful|1404
+
+next significant seq: >Aful|1405
+
+next significant seq: >Aful|1407
+
+next significant seq: >Aful|1410
+
+next significant seq: >Aful|1417
+
+next significant seq: >Aful|1424
+
+next significant seq: >Aful|1428
+
+next significant seq: >Aful|1429
+
+next significant seq: >Aful|1431
+
+next significant seq: >Aful|1439
+
+next significant seq: >Aful|1442
+
+next significant seq: >Aful|1450
+
+next significant seq: >Aful|1459
+
+next significant seq: >Aful|1460
+
+next significant seq: >Aful|1464
+
+next significant seq: >Aful|1478
+
+next significant seq: >Aful|1479
+
+next significant seq: >Aful|1483
+
+next significant seq: >Aful|1485
+
+next significant seq: >Aful|1495
+
+next significant seq: >Aful|1501
+
+next significant seq: >Aful|1505
+
+next significant seq: >Aful|1520
+
+next significant seq: >Aful|1522
+
+next significant seq: >Aful|1530
+
+next significant seq: >Aful|1534
+
+next significant seq: >Aful|1535
+
+next significant seq: >Aful|1552
+
+next significant seq: >Aful|1569
+
+next significant seq: >Aful|1583
+
+next significant seq: >Aful|1590
+
+next significant seq: >Aful|1593
+
+next significant seq: >Aful|1594
+
+next significant seq: >Aful|1596
+
+next significant seq: >Aful|1597
+
+next significant seq: >Aful|1601
+
+next significant seq: >Aful|1610
+
+next significant seq: >Aful|1625
+
+next significant seq: >Aful|1626
+
+next significant seq: >Aful|1629
+
+next significant seq: >Aful|1631
+
+next significant seq: >Aful|1634
+
+next significant seq: >Aful|1636
+
+next significant seq: >Aful|1645
+
+next significant seq: >Aful|1653
+
+next significant seq: >Aful|1655
+
+next significant seq: >Aful|1659
+
+next significant seq: >Aful|1662
+
+next significant seq: >Aful|1684
+
+next significant seq: >Aful|1687
+
+next significant seq: >Aful|1694
+
+next significant seq: >Aful|1696
+
+next significant seq: >Aful|1703
+
+Segmentation fault
 ]0;kngo@newcell:~/leRCC[kngo@newcell ~/leRCC]$ exit
 exit
 
-Script done on Tue 24 Jun 2014 02:44:13 PM EDT
+Script done on Wed 25 Jun 2014 02:38:07 PM EDT
