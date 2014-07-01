@@ -20,9 +20,9 @@ using namespace std;
 ExtractMMSeq :: ExtractMMSeq (string filename) {
 
 	if (valid_file_extension(filename)) {
-		cout << "Reading " << filename << endl;
+//		cout << "Reading " << filename << endl;
 		parse_file(filename);
-		cout << "Finished reading " << filename << endl;
+//		cout << "Finished reading " << filename << endl;
 	}
 //	} else
 //		cout << filename << " is an invalid file." << endl;

@@ -17,6 +17,9 @@
 #include <iostream>	// cout
 #include <sstream> //stringstream peak, ignore
 
+const int NUM_CODON_WINDOW = 17;
+const int NUM_MASK_AA	= 50 - NUM_CODON_WINDOW;
+
 using namespace std;
 
 RunLength :: RunLength (vector<string>::iterator sigOrf_it, const vector<string>& sigOrf_v, const vector<pair<string, string> >& id_seq) {
@@ -52,7 +55,7 @@ vector<int> RunLength :: get_non_sig_runs() {
 
 // SEGFAULTS FOR SOME REASON :(
 // Parses minmax sequence string into vector of floats
-vector<float> RunLength :: parse_mm_seq(string &mm_seq) {
+vector<float> RunLength :: parse_mm_seq(const string& mm_seq) {
 
 	float i;
 	vector<float> mm_number_v;	// str parsed into a vector of floats
@@ -93,18 +96,18 @@ void RunLength :: add_runs (vector<int>& sum, const vector<int>& runs) {
 
 // Prints vector of sig & non-sig runs
 void RunLength :: print_runs (const vector<int>& sr, const vector<int>& nsr) {
-
+/*
 	vector<int>::const_iterator sr_it = sr.begin();
 	vector<int>::const_iterator nsr_it = nsr.begin();
 	for (int i = 0; sr_it != sr.end(); i++, ++sr_it, ++nsr_it) {
 		cout << i << " sig: " << *sr_it << " ";
 		cout << "non-sig: " << *nsr_it << endl;
 	}
-/*	for (int i = 0; i < 25; i++) {
+*/	for (int i = 0; i < 25; i++) {
 		cout << i << "\t" << "sig: " << sr[i] << "\t";
 		cout << "non-sig: " << nsr[i] << endl;
 	}
-*/}
+}
 
 
 // Increments (non)sig_runs if vec of sig seqs has consecutive mins
@@ -119,51 +122,53 @@ void RunLength :: count_runs(vector<string>::iterator sigOrf, const vector<strin
 	for (id_seq_it; id_seq_it != id_seq.end(); ++id_seq_it) {
 //		cout << id_seq_it->first << endl;
 
-
 		// Parse the minmax values string by ','
 		vector<float> mm_number_v;
-		float i;
-		stringstream ss(id_seq_it->second);
-	
-		while (ss >> i) {
-//			cout << i << " ";
-			mm_number_v.push_back(i);
-			if (ss.peek() == ',')
-				ss.ignore();
-		}
+		mm_number_v = parse_mm_seq(id_seq_it->second);
 //		cout << endl;
 		
+		// Masks the first 50 amino acids considering 17 codon windows
 		// Iterates through min max values and counts for min runs
-		vector<float>::iterator it = mm_number_v.begin();
-		for (it; it != mm_number_v.end(); ++it) {
+		if (mm_number_v.size() > NUM_MASK_AA) {	// Prevents running off vec
 
-			min_run_count = 0;						// Reset count every max value break
-			while (*it < 0) {							// Continuous min values
-//				cout << *it << " ";
-				min_run_count++;
-				if (it+1 != mm_number_v.end())	// Prevents from running off vec
-					++it;
-				else break;
-			}
-//			if (min_run_count > 0) {
-//				cout << endl << id_seq_it->first << " " << min_run_count << endl;
-//			}
+			vector<float>::const_iterator it = mm_number_v.begin();
+//			cout << *it << " ";
+			it += NUM_MASK_AA;
+//			cout << *it << endl;
+
+			for (it; it != mm_number_v.end(); ++it) {
+				min_run_count = 0;			// Reset count every max value break
+				while (*it < 0) {				// Continuous min values
+					min_run_count++;
+//					cout << *it << " ";
+					// Prevents from running off vec
+					if (it+1 != mm_number_v.end())
+						++it;
+					else break;
+				}
+		//			if (min_run_count > 0) {
+		//				cout << endl << id_seq_it->first << " " << min_run_count << endl;
+		//			}
 			
-			if (min_run_count > sig_runs.size() || min_run_count > non_sig_runs.size()) {
-				cout << "local resized here to " << min_run_count+1 << endl;
-				sig_runs.resize(min_run_count+1, 0);
-				non_sig_runs.resize(min_run_count+1, 0);
-			}
+				if (min_run_count > sig_runs.size()
+					|| min_run_count > non_sig_runs.size()) {
+	//				cout << "local resized here to " << min_run_count+1 << endl;
+					sig_runs.resize(min_run_count+1, 0);
+					non_sig_runs.resize(min_run_count+1, 0);
+				}
 			
-			// If id matches significant orfeome, increment accordingly
-			if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end()) {
-				sig_runs[min_run_count]++;
-				++sigOrf;
-	//				cout << "Significant: " << sig_runs[min_run_count] << endl;
+				// If id matches significant orfeome, increment accordingly
+				if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end()) {
+
+					if (min_run_count > 0)
+						sig_runs[min_run_count]++;
+					++sigOrf;
+		//				cout << "Significant: " << sig_runs[min_run_count] << endl;
 	//				cout << "next significant seq: " << *sigOrf << endl << endl;
-			} else {
-				non_sig_runs[min_run_count]++;
-	//cout << "Not significant: " << non_sig_runs[min_run_count] << endl;
+				} else if (min_run_count > 0) {
+					non_sig_runs[min_run_count]++;
+		//cout << "Not significant: " << non_sig_runs[min_run_count] << endl;
+				}
 			}
 		}
 	}

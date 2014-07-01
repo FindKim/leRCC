@@ -59,3 +59,20 @@ Sum up all sig_runs and non_sig_runs
 
 	- Create a histogram of sig_runs and non_sig_runs (gnuplot?)
 Adds all sig & non-sig runs for each sequence to a vector of sums. use vector to print to output file and create histogram on gnuplot.
+
+6/27
+Converted output to histograms
+
+6/30
+Meeting with Patricia, Julie, and Scott
+	- Run analysis on masked data
+	- Compute another analysis on # of occurences per %min value
+	- Calculate avg cluster length
+	- Find best fit equation
+Attempted analysis on masked data--data format was not reasonable
+
+7/1
+Meeting with Scott
+	- Calculate variance: sqrt((sum of all (val-avg)^2)/(N-1))
+	- Run analysis on unmasked data: neglect first 50 amino acids for each sequence to resemble masked data set (more complex than that but for this project, this is sufficient)
+Calculated average rare codon clust length in sigOrf_masked dir

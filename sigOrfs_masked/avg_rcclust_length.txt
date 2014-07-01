@@ -1,0 +1,20 @@
+sig_pruned_masked_p.05_results.txt
+sig avg length: 11.92
+non-sig avg length: 5.93
+
+sig_pruned_masked_p.01_results.txt
+sig avg length: 11.53
+non-sig avg length: 5.94
+
+sig_pruned_masked_p.0001_results.txt
+sig avg length: 11.86
+non-sig avg length: 5.94
+
+sig_pruned_masked_p1e-05_results.txt
+sig avg length: 11.81
+non-sig avg length: 5.94
+
+sig_pruned_masked_p.001_results.txt
+sig avg length: 11.72
+non-sig avg length: 5.94
+

@@ -45,7 +45,7 @@ class RunLength {
 		void set_non_sig_runs(int); //""
 		void set_sigOrf_it_pos(vector<string>::iterator);
 			// Sets where the last position the iterator pointed to
-		vector<float> parse_mm_seq(string&);
+		vector<float> parse_mm_seq(const string&);
 			// Parses minmax sequence string into vector of floats, delim=,
 };
 
