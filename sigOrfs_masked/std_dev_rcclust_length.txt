@@ -1,0 +1,22 @@
+Calculated standard deviation for rare codon cluster length differing by p-Value cut offs.
+
+sig_pruned_masked_p.01_results.txt
+sig std dev: 26.91
+non-sig std dev: 11.17
+
+sig_pruned_masked_p.05_results.txt
+sig std dev: 29.52
+non-sig std dev: 11.13
+
+sig_pruned_masked_p.0001_results.txt
+sig std dev: 26.47
+non-sig std dev: 11.2
+
+sig_pruned_masked_p1e-05_results.txt
+sig std dev: 22.74
+non-sig std dev: 11.22
+
+sig_pruned_masked_p.001_results.txt
+sig std dev: 27.13
+non-sig std dev: 11.21
+

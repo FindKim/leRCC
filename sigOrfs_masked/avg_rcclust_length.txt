@@ -1,10 +1,12 @@
-sig_pruned_masked_p.05_results.txt
-sig avg length: 11.92
-non-sig avg length: 5.93
+Calculated average length for rare codon clusters differing by p-Value cut offs.
 
 sig_pruned_masked_p.01_results.txt
 sig avg length: 11.53
 non-sig avg length: 5.94
+
+sig_pruned_masked_p.05_results.txt
+sig avg length: 11.92
+non-sig avg length: 5.93
 
 sig_pruned_masked_p.0001_results.txt
 sig avg length: 11.86

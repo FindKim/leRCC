@@ -76,3 +76,7 @@ Meeting with Scott
 	- Calculate variance: sqrt((sum of all (val-avg)^2)/(N-1))
 	- Run analysis on unmasked data: neglect first 50 amino acids for each sequence to resemble masked data set (more complex than that but for this project, this is sufficient)
 Calculated average rare codon clust length in sigOrf_masked dir
+
+7/2
+Finished implementing script to calculate standard deviation
+Prepared for presentation
