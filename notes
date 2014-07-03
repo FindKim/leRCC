@@ -80,3 +80,8 @@ Calculated average rare codon clust length in sigOrf_masked dir
 7/2
 Finished implementing script to calculate standard deviation
 Prepared for presentation
+Began implementing counting Min value occurences
+
+7/3
+Finished calculations for min value occurences
+computed avg and std dev for min value occurences

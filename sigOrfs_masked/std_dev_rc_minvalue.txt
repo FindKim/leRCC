@@ -1,0 +1,22 @@
+Calculated standard deviation for rare codon absolute %Min values differing by p-Value cut offs.
+
+sig_pruned_masked_p.001_minvalue.txt
+sig std dev: 13.82
+non-sig std dev: 14.35
+
+sig_pruned_masked_p.0001_minvalue.txt
+sig std dev: 13.86
+non-sig std dev: 14.37
+
+sig_pruned_masked_p.01_minvalue.txt
+sig std dev: 13.84
+non-sig std dev: 14.42
+
+sig_pruned_masked_p.05_minvalue.txt
+sig std dev: 14.16
+non-sig std dev: 14.34
+
+sig_pruned_masked_p1e-05_minvalue.txt
+sig std dev: 13.97
+non-sig std dev: 14.34
+

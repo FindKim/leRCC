@@ -53,7 +53,6 @@ vector<int> RunLength :: get_non_sig_runs() {
 }
 
 
-// SEGFAULTS FOR SOME REASON :(
 // Parses minmax sequence string into vector of floats
 vector<float> RunLength :: parse_mm_seq(const string& mm_seq) {
 

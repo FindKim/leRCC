@@ -17,7 +17,7 @@
 
 using namespace std;
 
-ExtractMMSeq :: ExtractMMSeq (string filename) {
+ExtractMMSeq :: ExtractMMSeq (const string& filename) {
 
 	if (valid_file_extension(filename)) {
 //		cout << "Reading " << filename << endl;
@@ -35,7 +35,7 @@ vector<pair<string, string> > ExtractMMSeq :: get_mm_orfeome() {
 
 
 // Reads file and parses every 2 lines into pair of id & seq; adds to v
-void ExtractMMSeq :: parse_file(string filename) {
+void ExtractMMSeq :: parse_file(const string& filename) {
 
 	string id, seq;
 	ifstream file(filename.c_str());
@@ -51,7 +51,7 @@ void ExtractMMSeq :: parse_file(string filename) {
 
 
 // Returns T if valid file ext .fasta.mm.mm
-bool ExtractMMSeq :: valid_file_extension(string filename) {
+bool ExtractMMSeq :: valid_file_extension(const string& filename) {
 
 	ifstream file(filename.c_str());
 	
@@ -66,6 +66,6 @@ bool ExtractMMSeq :: valid_file_extension(string filename) {
 
 
 // Adds id&seq pair to mm_orfeome vec
-void ExtractMMSeq :: add_id_seq(pair<string, string> id_seq) {
+void ExtractMMSeq :: add_id_seq(pair<string, string>& id_seq) {
 	mm_orfeome.push_back(id_seq);
 }

@@ -11,6 +11,7 @@
 #include "ExtractMMSeq.h"
 #include "ExtractSigOrf.h"
 #include "RunLength.h"
+#include "MinValue.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,9 +21,9 @@
 //#include <regex>		// Regex to check for valid file ext WHY DOESN'T THE UNIV SUPPORT C++11?!
 
 const string DIRECTORY = "/afs/crc.nd.edu/user/k/kngo/orig_fasta/";
-//const string SIGORF_FILE = "/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs/sigOrfs_p.05.txt";
-const string SIGORF_FILE = "/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_unmasked/sigOrfs_p.001.txt";
-const string OUTPUTFILE = "sigOrfs_masked/sig_pruned_masked_p.001_results.txt";
+const string SIGORF_FILE = "/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_unmasked/sigOrfs_p1e-05.txt";
+const string OUTPUTFILE_LENGTH = "sigOrfs_masked/sig_pruned_masked_p1e-05_length.txt";
+const string OUTPUTFILE_MINVALUE = "sigOrfs_masked/sig_pruned_masked_p1e-05_minvalue.txt";
 
 using namespace std;
 
@@ -81,7 +82,6 @@ void print_total_run (const vector<int>& tot_sig_runs, const vector<int>& tot_no
 		cout << i << " sig: " << tot_sig_runs[i] << " ";
 		cout << "non-sig: " << tot_non_sig_runs[i] << endl;
 	}
-
 }
 
 
@@ -97,7 +97,8 @@ void resize_vector(vector<int> &sum, const vector<int> &runs) {
 
 
 // Creates a column-based output file separated by ','
-void create_output_file(string filename, const vector<int>& sig_runs, const vector<int>& non_sig_runs) {
+// last argument is what I am calculating--length or abs min value
+void create_output_file(const string& filename, const vector<int>& sig_runs, const vector<int>& non_sig_runs, string& type) {
 
 	cout << "Creating " << filename << "..." << endl;
 	
@@ -106,7 +107,7 @@ void create_output_file(string filename, const vector<int>& sig_runs, const vect
 	
 	if (ofile.is_open()) {
 	
-		ofile << "Length,Sig,Non-Sig" << endl;
+		ofile << type << ",Sig,Non-Sig" << endl;
 		vector<int>::const_iterator sig_it = sig_runs.begin();
 		vector<int>::const_iterator non_sig_it = non_sig_runs.begin();
 		for (int i = 0; sig_it != sig_runs.end();
@@ -126,7 +127,8 @@ int main() {
 	int i = 0;
 	string directory = DIRECTORY;
 	string sigOrf_file = SIGORF_FILE;
-	string outputfile = OUTPUTFILE;
+	string outputfile_length = OUTPUTFILE_LENGTH;
+	string outputfile_minvalue = OUTPUTFILE_MINVALUE;
 /*	string sigOrf_file;
 	string outputfile;
 	cout << "sigOrf_p file\n>";
@@ -137,6 +139,8 @@ int main() {
 	vector<string> mmfiles;
 	vector<int> tot_sig_runs(300, 0);
 	vector<int> tot_non_sig_runs(300, 0);
+	vector<int> tot_sig_min(101, 0);
+	vector<int> tot_non_sig_min(101, 0);
 	
 	ExtractSigOrf sigOrf(sigOrf_file);
 	vector<string> sigOrf_v = sigOrf.get_sigOrf();
@@ -156,7 +160,24 @@ int main() {
 
 			// Valid file with extension ".fasta.mm.mm"--sorted .mm file
 			if (mm.valid_file_extension(*file_it)) {
+//				cout << *file_it << endl;
 
+// COUNTS OCCURENCES OF MIN VALUES
+				MinValue mv(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
+				vector<int> sm = mv.get_sig_min();
+				vector<int> nsm = mv.get_non_sig_min();
+				
+				mv.add_mins (tot_sig_min, sm);
+				mv.add_mins (tot_non_sig_min, nsm);
+				sigOrf_it = mv.get_it_pos();
+//				cout << *sigOrf_it << endl;
+/*				
+				mv.print_min (sm, nsm);
+				cout << endl << "TOTAL COUNT" << endl;
+				mv.print_min (tot_sig_min, tot_non_sig_min);
+				cout << endl;
+*/
+/* COUNTS RARE CODON CLUSTER LENGTHS
 				RunLength compare(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
 
 				vector<int> sr = compare.get_sig_runs();
@@ -172,11 +193,16 @@ int main() {
 //				compare.print_runs(sr, nsr);
 //				print_total_run(tot_sig_runs, tot_non_sig_runs);
 //				cout << *sigOrf_it << endl;
+*/
 			}
 		}
 	}
 	cout << "--------------------------------------------" << endl;
-//	print_total_run(tot_sig_runs, tot_non_sig_runs);
 	
-	create_output_file(outputfile, tot_sig_runs, tot_non_sig_runs);
+	string minvalue = "Abs Min Value";
+	string length = "Length";
+//	print_total_run(tot_sig_min, tot_non_sig_min);
+	create_output_file(outputfile_minvalue, tot_sig_min, tot_non_sig_min, minvalue);
+//	print_total_run(tot_sig_runs, tot_non_sig_runs);
+//	create_output_file(outputfile_length, tot_sig_runs, tot_non_sig_runs, length);
 }

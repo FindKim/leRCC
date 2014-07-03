@@ -20,19 +20,19 @@ using namespace std;
 class ExtractMMSeq {
 
 	public:
-		ExtractMMSeq(string);
+		ExtractMMSeq(const string&);
 			// Reads and parses file argument into a vector of pairs: id & seq
 		vector<pair<string, string> > get_mm_orfeome();
 			// Returns vector of id & seq
-		bool valid_file_extension(string);
+		bool valid_file_extension(const string&);
 			// Returns T if valid file ext .fasta.mm.mm
 	
 	private:
 		vector<pair<string, string> > mm_orfeome;
 			// vector of id & seq pairs from an orfeome file
-		void parse_file(string);
+		void parse_file(const string&);
 			// Reads file and parses every 2 lines into pair of id & seq;add to v
-		void add_id_seq(pair<string, string>);
+		void add_id_seq(pair<string, string>&);
 			// Adds id&seq pair to mm_orfeome vec
 
 };

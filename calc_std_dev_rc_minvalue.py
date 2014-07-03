@@ -3,12 +3,12 @@
 import os
 import re
 
-pattern = re.compile('sig_pruned_masked_p.+_length\.txt')
+pattern = re.compile('sig_pruned_masked_p.+_minvalue\.txt')
 LENGTH,SIG_COUNT,NSIG_COUNT = range(3)	# 0, 1, 2
 
-file_out = open('/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_masked/std_dev_rcclust_length.txt', 'w') # overwrites if exits
+file_out = open('/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_masked/std_dev_rc_minvalue.txt', 'w') # overwrites if exits
 
-file_out.write('Calculated standard deviation for rare codon cluster length differing by p-Value cut offs.')
+file_out.write('Calculated standard deviation for rare codon absolute %Min values differing by p-Value cut offs.')
 file_out.write('\n')
 file_out.write('\n')
 

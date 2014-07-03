@@ -29,6 +29,7 @@ class RunLength {
 		vector<int> get_non_sig_runs();	// Returns # of runs for non-sig seqs
 		vector<string>::iterator get_it_pos();	// Returns position iterator
 		void add_runs(vector<int>&, const vector<int>&);
+			// Adds elements in second vector to first vector
 		void print_runs(const vector<int>&, const vector<int>&);
 	
 	private:
