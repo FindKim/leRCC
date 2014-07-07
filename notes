@@ -85,3 +85,7 @@ Began implementing counting Min value occurences
 7/3
 Finished calculations for min value occurences
 computed avg and std dev for min value occurences
+
+7/7
+Analyzed significant sequence lengths vs non-sig sequence lengths
+T-Test to see whether the difference between the two group's average lengths is unlikely to have occurred because of random chance in sample selection

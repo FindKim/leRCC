@@ -12,18 +12,21 @@
 #include "ExtractSigOrf.h"
 #include "RunLength.h"
 #include "MinValue.h"
+#include "AvgSeqLength.h"
 #include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>	// Output file
 #include <dirent.h>	// Traverse directory
 #include <algorithm> // Sort
+#include <limits>		// numeric_limits to find max value of type
 //#include <regex>		// Regex to check for valid file ext WHY DOESN'T THE UNIV SUPPORT C++11?!
 
 const string DIRECTORY = "/afs/crc.nd.edu/user/k/kngo/orig_fasta/";
-const string SIGORF_FILE = "/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_unmasked/sigOrfs_p1e-05.txt";
-const string OUTPUTFILE_LENGTH = "sigOrfs_masked/sig_pruned_masked_p1e-05_length.txt";
-const string OUTPUTFILE_MINVALUE = "sigOrfs_masked/sig_pruned_masked_p1e-05_minvalue.txt";
+const string SIGORF_FILE = "/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_unmasked/sigOrfs_p.0001.txt";
+const string OUTPUTFILE_LENGTH = "sigOrfs_masked/sig_pruned_masked_p.0001_length.txt";
+const string OUTPUTFILE_MINVALUE = "sigOrfs_masked/sig_pruned_masked_p.0001_minvalue.txt";
+const string OUTPUTFILE_AVG_LENGTH = "results/sigOrfs_avg_length_p.0001.txt";
 
 using namespace std;
 
@@ -121,24 +124,75 @@ void create_output_file(const string& filename, const vector<int>& sig_runs, con
 	} else cout << "Unable to open " << filename << endl;
 }
 
-
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ---------------------------CALCULATES RARE CODON CLUSTER LENGTHS
+/*
 int main() {
 
 	int i = 0;
 	string directory = DIRECTORY;
 	string sigOrf_file = SIGORF_FILE;
 	string outputfile_length = OUTPUTFILE_LENGTH;
-	string outputfile_minvalue = OUTPUTFILE_MINVALUE;
-/*	string sigOrf_file;
-	string outputfile;
-	cout << "sigOrf_p file\n>";
-	cin >> sigOrf_file;
-	cout << "output file name\n>";
-	cin >> outputfile;
-*/
+
 	vector<string> mmfiles;
 	vector<int> tot_sig_runs(300, 0);
 	vector<int> tot_non_sig_runs(300, 0);
+	
+	ExtractSigOrf sigOrf(sigOrf_file);
+	vector<string> sigOrf_v = sigOrf.get_sigOrf();
+	vector<string>::iterator sigOrf_it = sigOrf_v.begin();
+
+	if (directory_exists(directory.c_str())) {
+	
+		// Traverses directory and returns vector of filenames
+		mmfiles = traverse_directory(directory);
+		
+		// Iterates through each file
+		vector<string>::iterator file_it = mmfiles.begin();
+		for (file_it; file_it != mmfiles.end(); ++file_it) {
+
+			ExtractMMSeq mm(*file_it);
+
+			// Valid file with extension ".fasta.mm.mm"--sorted .mm file
+			if (mm.valid_file_extension(*file_it)) {;
+
+// COUNTS RARE CODON CLUSTER LENGTHS
+				RunLength compare(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
+
+				vector<int> sr = compare.get_sig_runs();
+				vector<int> nsr = compare.get_non_sig_runs();				
+				if (tot_sig_runs.size() < sr.size() || tot_non_sig_runs.size() < nsr.size()) {
+					resize_vector (tot_sig_runs, sr);
+					resize_vector (tot_non_sig_runs, nsr);
+//					print_total_run(tot_sig_runs, tot_non_sig_runs);
+				}
+				compare.add_runs (tot_sig_runs, sr);
+				compare.add_runs (tot_non_sig_runs, nsr);
+				sigOrf_it = compare.get_it_pos();
+//				compare.print_runs(sr, nsr);
+//				print_total_run(tot_sig_runs, tot_non_sig_runs);
+//				cout << *sigOrf_it << endl;
+			}
+		}
+	}
+	cout << "--------------------------------------------" << endl;
+	
+	string length = "Length";
+	create_output_file(outputfile_length, tot_sig_runs, tot_non_sig_runs, length);
+}
+*/
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// -------------------------------------COUNTS MIN VALUE OCCURENCES
+/*
+int main() {
+
+	int i = 0;
+	string directory = DIRECTORY;
+	string sigOrf_file = SIGORF_FILE;
+	string outputfile_minvalue = OUTPUTFILE_MINVALUE;
+
+	vector<string> mmfiles;
 	vector<int> tot_sig_min(101, 0);
 	vector<int> tot_non_sig_min(101, 0);
 	
@@ -171,38 +225,93 @@ int main() {
 				mv.add_mins (tot_non_sig_min, nsm);
 				sigOrf_it = mv.get_it_pos();
 //				cout << *sigOrf_it << endl;
-/*				
-				mv.print_min (sm, nsm);
-				cout << endl << "TOTAL COUNT" << endl;
-				mv.print_min (tot_sig_min, tot_non_sig_min);
-				cout << endl;
-*/
-/* COUNTS RARE CODON CLUSTER LENGTHS
-				RunLength compare(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
-
-				vector<int> sr = compare.get_sig_runs();
-				vector<int> nsr = compare.get_non_sig_runs();				
-				if (tot_sig_runs.size() < sr.size() || tot_non_sig_runs.size() < nsr.size()) {
-					resize_vector (tot_sig_runs, sr);
-					resize_vector (tot_non_sig_runs, nsr);
-//					print_total_run(tot_sig_runs, tot_non_sig_runs);
-				}
-				compare.add_runs (tot_sig_runs, sr);
-				compare.add_runs (tot_non_sig_runs, nsr);
-				sigOrf_it = compare.get_it_pos();
-//				compare.print_runs(sr, nsr);
-//				print_total_run(tot_sig_runs, tot_non_sig_runs);
-//				cout << *sigOrf_it << endl;
-*/
 			}
 		}
 	}
 	cout << "--------------------------------------------" << endl;
 	
-	string minvalue = "Abs Min Value";
-	string length = "Length";
 //	print_total_run(tot_sig_min, tot_non_sig_min);
+	string minvalue = "Abs Min Value";
 	create_output_file(outputfile_minvalue, tot_sig_min, tot_non_sig_min, minvalue);
-//	print_total_run(tot_sig_runs, tot_non_sig_runs);
-//	create_output_file(outputfile_length, tot_sig_runs, tot_non_sig_runs, length);
 }
+*/
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ---------------------------------------CALCULATES AVG SEQ LENGTH
+
+int main() {
+
+	long double sig_tot_sum_length = 0;
+	long double non_sig_tot_sum_length = 0;
+	float sig_tot_num_seq = 0;
+	float non_sig_tot_num_seq = 0;
+	string directory = DIRECTORY;
+	string sigOrf_file = SIGORF_FILE;
+	string outputfile = OUTPUTFILE_AVG_LENGTH;
+
+	vector<string> mmfiles;
+	
+	ExtractSigOrf sigOrf(sigOrf_file);
+	vector<string> sigOrf_v = sigOrf.get_sigOrf();
+	vector<string>::iterator sigOrf_it = sigOrf_v.begin();
+
+	if (directory_exists(directory.c_str())) {
+	
+		// Traverses directory and returns vector of filenames
+		mmfiles = traverse_directory(directory);
+		
+		// Iterates through each file
+		vector<string>::iterator file_it = mmfiles.begin();
+		for (file_it; file_it != mmfiles.end(); ++file_it) {
+
+			ExtractMMSeq mm(*file_it);
+
+			// Valid file with extension ".fasta.mm.mm"--sorted .mm file
+			if (mm.valid_file_extension(*file_it)) {;
+
+// CALCULATES AVG SEQ LENGTH
+				AvgSeqLength avg(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
+				
+				sig_tot_sum_length += avg.get_sig_sum_length();
+				non_sig_tot_sum_length += avg.get_non_sig_sum_length();
+				sig_tot_num_seq += avg.get_sig_num_seqs();
+				non_sig_tot_num_seq += avg.get_non_sig_num_seqs();
+				
+				sigOrf_it = avg.get_it_pos();
+				
+				if (non_sig_tot_sum_length > numeric_limits<long double>::max())
+					cout << "-------------------------------------------------\nTOO LARGE, CHECK CALCULATIONS\n------------------------------------------------" << endl;
+
+/*
+				cout << "next sigOrf is " << *sigOrf_it << endl;
+				cout << *file_it << endl;
+				cout << "Sig Length:\t" << avg.get_sig_sum_length() << "\t" << sig_tot_sum_length << endl;
+				cout << "Sig num:\t" << avg.get_sig_num_seqs() << "\t" << sig_tot_num_seq << endl;
+				cout << "Nsig Length:\t" << avg.get_non_sig_sum_length() << "\t" << non_sig_tot_sum_length << endl;
+				cout << "Nsig num:\t" << avg.get_non_sig_num_seqs() << "\t" << non_sig_tot_num_seq << endl;
+				cout << endl;
+*/			}
+		}
+	}
+	cout << "--------------------------------------------" << endl;
+	
+	float sig_avg = AvgSeqLength::calc_avg(sig_tot_sum_length, sig_tot_num_seq);
+	float non_sig_avg = AvgSeqLength::calc_avg(non_sig_tot_sum_length, non_sig_tot_num_seq);
+	
+	cout << "SIG AVG:\t" << sig_avg << endl;
+	cout << "NSIG AVG:\t" << non_sig_avg << endl;
+
+	cout << "Creating " << outputfile << "..." << endl;
+	ofstream ofile;
+	ofile.open (outputfile.c_str());
+	
+	if (ofile.is_open()) {
+		ofile << "# The average length of significant & nonsignificant sequences\n# p-Value .0001" << endl << endl;
+		ofile << "Sig avg: " << sig_avg << endl;
+		ofile << "Non-Sig avg: " << non_sig_avg << endl;
+		ofile.close();
+		cout << outputfile << " has been created." << endl;
+
+	} else cout << "Unable to open " << outputfile << endl;
+}
+
+
