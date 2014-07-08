@@ -13,9 +13,12 @@
 #include "RunLength.h"
 #include "MinValue.h"
 #include "AvgSeqLength.h"
+#include "StdDevLength.h"
 #include <iostream>
+#include <iomanip>	// setprecision for decmial places
 #include <string>
 #include <vector>
+#include <math.h>		// pow()
 #include <fstream>	// Output file
 #include <dirent.h>	// Traverse directory
 #include <algorithm> // Sort
@@ -23,10 +26,10 @@
 //#include <regex>		// Regex to check for valid file ext WHY DOESN'T THE UNIV SUPPORT C++11?!
 
 const string DIRECTORY = "/afs/crc.nd.edu/user/k/kngo/orig_fasta/";
-const string SIGORF_FILE = "/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_unmasked/sigOrfs_p.0001.txt";
-const string OUTPUTFILE_LENGTH = "sigOrfs_masked/sig_pruned_masked_p.0001_length.txt";
-const string OUTPUTFILE_MINVALUE = "sigOrfs_masked/sig_pruned_masked_p.0001_minvalue.txt";
-const string OUTPUTFILE_AVG_LENGTH = "results/sigOrfs_avg_length_p.0001.txt";
+const string SIGORF_FILE = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_unmasked/sigOrfs_p1e-05.txt";
+const string OUTPUTFILE_CLUSTER_LENGTH = "results/sigOrfs_masked/sig_p1e-05.txt";
+const string OUTPUTFILE_MINVALUE = "results/sigOrfs_masked/sig_p1e-05.txt";
+const string OUTPUTFILE_AVG_LENGTH_T_TEST = "results/avg_seq_length_t_test/sigOrfs_avg_seq_length_t_test_p1e-05.txt";
 
 using namespace std;
 
@@ -101,7 +104,7 @@ void resize_vector(vector<int> &sum, const vector<int> &runs) {
 
 // Creates a column-based output file separated by ','
 // last argument is what I am calculating--length or abs min value
-void create_output_file(const string& filename, const vector<int>& sig_runs, const vector<int>& non_sig_runs, string& type) {
+void create_outputfile(const string& filename, const vector<int>& sig_runs, const vector<int>& non_sig_runs, string& type) {
 
 	cout << "Creating " << filename << "..." << endl;
 	
@@ -122,6 +125,60 @@ void create_output_file(const string& filename, const vector<int>& sig_runs, con
 		cout << filename << " has been created." << endl;
 
 	} else cout << "Unable to open " << filename << endl;
+}
+
+
+// Creates output file that writes # elements, avg, variance, std dev,
+// t value, and determines if diff btwn avg are significantly different
+void create_outputfile_t_test(const string& outputfile, const float& sig_tot_num_seq, const float& non_sig_tot_num_seq, const float& sig_avg, const float& non_sig_avg, const float& sig_var, const float& non_sig_var, const float& sig_std_dev, const float& non_sig_std_dev, const float& t_value) {
+
+	cout << "Creating " << outputfile << "..." << endl;
+	ofstream ofile;
+	ofile.open (outputfile.c_str());
+	
+	if (ofile.is_open()) {
+		ofile << "# t test comparing average sequence lengths of significant & non-sig seqs\n# p-Value 1e-05" << endl << endl;
+		ofile << setw(12) << "Variable" << setw(12) << "Sig" << setw(12) << "Non-Sig" << endl;
+
+		ofile << setw(12) << "n elements" << setw(12)
+			<< sig_tot_num_seq << setw(12) << non_sig_tot_num_seq << endl;
+
+		ofile.precision(2); // fixed format for two decimal places
+		ofile << fixed;
+		
+		ofile << setw(12) << "Average" << setw(12)
+			<< sig_avg << setw(12) << non_sig_avg << endl;
+
+		ofile << setw(12) << "Variance" << setw(12)
+			<< sig_var << setw(12) << non_sig_var << endl;
+
+		ofile << setw(12) << "Std Dev" << setw(12)
+			<< sig_std_dev << setw(12) << non_sig_std_dev << endl;
+		
+		ofile << endl;
+		ofile << "t Value: " << t_value << endl;
+		ofile << endl;
+
+		float degree_of_freedom = (sig_tot_num_seq + non_sig_tot_num_seq)-2;
+		if (degree_of_freedom > 120)
+			if (t_value > 3.29)
+				ofile << "A significant difference at probability = 0.001" << endl;
+			else if (t_value > 2.58)
+				ofile << "A significant difference at probability = 0.01." << endl;
+			else if (t_value > 1.96)
+				ofile << "A significant difference at probability = 0.05" << endl;
+			else if (t_value > 1.65)
+				ofile << "A significant difference at probability = 0.1" << endl;
+			else
+				ofile << "No siginificant difference." << endl;
+		
+		else
+			ofile << "Select a smaller degree of freedom value from t table." << endl;
+
+		ofile.close();
+		cout << outputfile << " has been created." << endl;
+
+	} else cout << "Unable to open " << outputfile << endl;
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -178,7 +235,7 @@ int main() {
 	cout << "--------------------------------------------" << endl;
 	
 	string length = "Length";
-	create_output_file(outputfile_length, tot_sig_runs, tot_non_sig_runs, length);
+	create_outputfile(outputfile_length, tot_sig_runs, tot_non_sig_runs, length);
 }
 */
 
@@ -232,11 +289,13 @@ int main() {
 	
 //	print_total_run(tot_sig_min, tot_non_sig_min);
 	string minvalue = "Abs Min Value";
-	create_output_file(outputfile_minvalue, tot_sig_min, tot_non_sig_min, minvalue);
+	create_outputfile(outputfile_minvalue, tot_sig_min, tot_non_sig_min, minvalue);
 }
 */
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ---------------------------------------CALCULATES AVG SEQ LENGTH
+// ---------------------------------------CALCULATES STD_DEV LENGTH
+// -------------------------------------------------COMPUTES T TEST
 
 int main() {
 
@@ -244,9 +303,10 @@ int main() {
 	long double non_sig_tot_sum_length = 0;
 	float sig_tot_num_seq = 0;
 	float non_sig_tot_num_seq = 0;
+
 	string directory = DIRECTORY;
 	string sigOrf_file = SIGORF_FILE;
-	string outputfile = OUTPUTFILE_AVG_LENGTH;
+	string outputfile = OUTPUTFILE_AVG_LENGTH_T_TEST;
 
 	vector<string> mmfiles;
 	
@@ -258,6 +318,8 @@ int main() {
 	
 		// Traverses directory and returns vector of filenames
 		mmfiles = traverse_directory(directory);
+		
+		cout << "Computing average for " << SIGORF_FILE << endl;
 		
 		// Iterates through each file
 		vector<string>::iterator file_it = mmfiles.begin();
@@ -292,26 +354,57 @@ int main() {
 */			}
 		}
 	}
-	cout << "--------------------------------------------" << endl;
-	
-	float sig_avg = AvgSeqLength::calc_avg(sig_tot_sum_length, sig_tot_num_seq);
-	float non_sig_avg = AvgSeqLength::calc_avg(non_sig_tot_sum_length, non_sig_tot_num_seq);
-	
+	cout << "Computing variance for " << SIGORF_FILE << endl;
+
+	float sig_variance_numerator = 0;
+	float non_sig_variance_numerator = 0;
+	float sig_variance = 0;
+	float non_sig_variance = 0;
+	float sig_std_dev = 0;
+	float non_sig_std_dev = 0;
+	long double sigma_d = 0;
+	float t_value = 0;
+
+	float sig_avg = AvgSeqLength::calc_avg (sig_tot_sum_length, sig_tot_num_seq);
+	float non_sig_avg = AvgSeqLength::calc_avg (non_sig_tot_sum_length, non_sig_tot_num_seq);
+/*
 	cout << "SIG AVG:\t" << sig_avg << endl;
+	cout << "SIG #SEQ:\t" << sig_tot_num_seq << endl;
 	cout << "NSIG AVG:\t" << non_sig_avg << endl;
+	cout << "NSIG #SEQ:\t" << non_sig_tot_num_seq << endl;
+*/
 
-	cout << "Creating " << outputfile << "..." << endl;
-	ofstream ofile;
-	ofile.open (outputfile.c_str());
+// CALCULATES STD DEVIATION
+	// Iterates through each file
+	sigOrf_it = sigOrf_v.begin();
+	vector<string>::iterator file_it = mmfiles.begin();
+	for (file_it; file_it != mmfiles.end(); ++file_it) {
+
+		ExtractMMSeq mm(*file_it);
+
+		// Valid file with extension ".fasta.mm.mm"--sorted .mm file
+		if (mm.valid_file_extension(*file_it)) {
+			
+			StdDevLength t(sigOrf_it, sigOrf_v, mm.get_mm_orfeome(), sig_avg, non_sig_avg);
+			sig_variance_numerator += t.get_sig_var_numerator_sum();
+			non_sig_variance_numerator += t.get_non_sig_var_numerator_sum();
+						
+			sigOrf_it = t.get_it_pos();
+		}
+	}
+
+	cout << "Computing t test for " << SIGORF_FILE << endl;
+
+	sig_variance = StdDevLength::calc_variance (sig_variance_numerator, sig_tot_num_seq);
+	non_sig_variance = StdDevLength::calc_variance  (non_sig_variance_numerator, non_sig_tot_num_seq);
 	
-	if (ofile.is_open()) {
-		ofile << "# The average length of significant & nonsignificant sequences\n# p-Value .0001" << endl << endl;
-		ofile << "Sig avg: " << sig_avg << endl;
-		ofile << "Non-Sig avg: " << non_sig_avg << endl;
-		ofile.close();
-		cout << outputfile << " has been created." << endl;
+	// sigma_d = sqrt(variance of difference btwn means)
+	sigma_d = StdDevLength::calc_sigma_d (sig_variance, sig_tot_num_seq, non_sig_variance, non_sig_tot_num_seq);
+	
+	// sig avg, non-sig avg, sigma_d
+	t_value = StdDevLength::calc_t_value (sig_avg, non_sig_avg, sigma_d);
 
-	} else cout << "Unable to open " << outputfile << endl;
+	create_outputfile_t_test(outputfile, sig_tot_num_seq, non_sig_tot_num_seq, sig_avg, non_sig_avg, sig_variance, non_sig_variance, pow(sig_variance, 0.5), pow(non_sig_variance, 0.5), t_value);
 }
 
 

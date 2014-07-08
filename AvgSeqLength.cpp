@@ -17,10 +17,8 @@
 #include <vector>
 #include <utility>	// pair
 #include <iostream>	// cout
-#include <sstream> //stringstream peak, ignore
+#include <sstream>	//stringstream peak, ignore
 
-const int NUM_CODON_WINDOW = 17;
-const int NUM_MASK_AA	= 50 - NUM_CODON_WINDOW;
 
 AvgSeqLength :: AvgSeqLength (vector<string>::iterator sigOrf_it, const vector<string>& sigOrf_v, const vector<pair<string, string> >& id_seq) {
 

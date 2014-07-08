@@ -27,7 +27,7 @@ ExtractSigOrf :: ExtractSigOrf (string filename) {
 		string line;
 		ifstream file(filename.c_str());
 		pair<string, int> name_number_pair;
-		
+
 		while (getline(file, line)) {
 //			v_sigOrf.push_back(line);
 			name_number_pair = createPair(line);
@@ -94,13 +94,13 @@ pair<string, int> ExtractSigOrf :: createPair (string line) {
 	string seq_num_str;
 	int seq_num;
 	int position = line.find("|");
-	
+
 	if (position != string::npos) {	// Delimiter is found
 		org_name = line.substr(0, position);
 		seq_num_str = line.substr(position+1, line.size());
 		seq_num = atoi(seq_num_str.c_str());
 //		cout << org_name << " " << seq_num_str << " " << seq_num << endl;
-		
+
 		return make_pair (org_name, seq_num);
 
 	} else {
@@ -112,7 +112,7 @@ pair<string, int> ExtractSigOrf :: createPair (string line) {
 // Sorts vector pair alphabetically
 void ExtractSigOrf :: sort_vector_pair (vector< pair<string, int> > sigOrf) {
 	string name_num;
-	
+
 	sort (sigOrf.begin(), sigOrf.end());
 	for (vector<pair<string,int> >::iterator it = sigOrf.begin(); it != sigOrf.end(); ++it) {
 //		cout << it->first << ' ' << it->second << endl;
@@ -129,7 +129,7 @@ void ExtractSigOrf :: sort_vector_pair (vector< pair<string, int> > sigOrf) {
 bool ExtractSigOrf :: validFile (string filename) {
 
 	ifstream file(filename.c_str());
-	
+
 	try {
 		if (file.good() &&
 		filename.compare(filename.size()-4, filename.size(), ".txt") == 0) {

@@ -59,7 +59,7 @@ vector<float> RunLength :: parse_mm_seq(const string& mm_seq) {
 	float i;
 	vector<float> mm_number_v;	// str parsed into a vector of floats
 	stringstream ss(mm_seq);
-	
+
 	while (ss >> i) {
 		mm_number_v.push_back(i);
 		if (ss.peek() == ',')
@@ -86,7 +86,7 @@ void RunLength :: add_runs (vector<int>& sum, const vector<int>& runs) {
 
 	vector<int>::iterator sum_it = sum.begin();
 	vector<int>::const_iterator runs_it = runs.begin();
-	
+
 	for (runs_it; runs_it != runs.end(); ++sum_it, ++runs_it) {
 		*sum_it += *runs_it;
 	}
@@ -125,7 +125,7 @@ void RunLength :: count_runs(vector<string>::iterator sigOrf, const vector<strin
 		vector<float> mm_number_v;
 		mm_number_v = parse_mm_seq(id_seq_it->second);
 //		cout << endl;
-		
+
 		// Masks the first 50 amino acids considering 17 codon windows
 		// Iterates through min max values and counts for min runs
 		if (mm_number_v.size() > NUM_MASK_AA) {	// Prevents running off vec
@@ -148,14 +148,14 @@ void RunLength :: count_runs(vector<string>::iterator sigOrf, const vector<strin
 		//			if (min_run_count > 0) {
 		//				cout << endl << id_seq_it->first << " " << min_run_count << endl;
 		//			}
-			
+
 				if (min_run_count > sig_runs.size()
 					|| min_run_count > non_sig_runs.size()) {
 	//				cout << "local resized here to " << min_run_count+1 << endl;
 					sig_runs.resize(min_run_count+1, 0);
 					non_sig_runs.resize(min_run_count+1, 0);
 				}
-			
+
 				// If id matches significant orfeome, increment accordingly
 				if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end()) {
 

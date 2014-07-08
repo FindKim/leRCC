@@ -1,5 +1,0 @@
-# The average length of significant & nonsignificant sequences
-# p-Value 1e-05
-
-Sig avg: 650.096
-Non-Sig avg: 405.274

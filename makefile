@@ -1,7 +1,7 @@
 all: leRCC
 
-leRCC: main.o ExtractSigOrf.o ExtractMMSeq.o RunLength.o MinValue.o AvgSeqLength.o
-	g++ main.o ExtractSigOrf.o ExtractMMSeq.o RunLength.o MinValue.o AvgSeqLength.o -o leRCC
+leRCC: main.o ExtractSigOrf.o ExtractMMSeq.o RunLength.o MinValue.o AvgSeqLength.o StdDevLength.o
+	g++ main.o ExtractSigOrf.o ExtractMMSeq.o RunLength.o MinValue.o AvgSeqLength.o StdDevLength.o -o leRCC
 
 main.o: main.cpp
 	g++ -c main.cpp
@@ -20,6 +20,9 @@ MinValue.o: MinValue.cpp MinValue.h
 
 AvgSeqLength.o: AvgSeqLength.cpp AvgSeqLength.h
 	g++ -c AvgSeqLength.cpp
+
+StdDevLength.o: StdDevLength.cpp StdDevLength.h
+	g++ -c StdDevLength.cpp
 
 clean:
 	rm -f *.o *.pyc *~ leRCC

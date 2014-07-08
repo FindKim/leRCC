@@ -31,7 +31,7 @@ class RunLength {
 		void add_runs(vector<int>&, const vector<int>&);
 			// Adds elements in second vector to first vector
 		void print_runs(const vector<int>&, const vector<int>&);
-	
+
 	private:
 		vector<int> sig_runs;	// min value runs for significant seqs in bins
 		vector<int> non_sig_runs;	// min value runs for non-sig seqs in bins
@@ -41,7 +41,7 @@ class RunLength {
 			// Increments (non)sig_runs if vec of sig seqs has consecutive mins
 			// The address of the bin is the length of the run
 			// Value in the addr is the number of runs of that length
-		
+
 		void set_sig_runs(int);			// Initializes sig_run vec with 100 0's
 		void set_non_sig_runs(int); //""
 		void set_sigOrf_it_pos(vector<string>::iterator);

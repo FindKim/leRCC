@@ -21,12 +21,12 @@ using namespace std;
 
 bool DirectoryExists(const char* pzPath) {
 	if(pzPath == NULL) return false;
-	
+
 	DIR *pDir;
 	bool bExists = false;
-	
+
 	pDir = opendir(pzPath);
-	
+
 	if(pDir != NULL) {
 		bExists = true;
 		(void) closedir (pDir);
@@ -53,13 +53,13 @@ pair<string, int> create_name_num_pair (string line) {
 	string seq_num_str;
 	int seq_num;
 	int position = line.find("|");
-	
+
 	if (position != string::npos) {	// Delimiter is found
 		org_name = line.substr(0, position);
 		seq_num_str = line.substr(position+1, line.size());
 		seq_num = atoi(seq_num_str.c_str());
 //		cout << org_name << " " << seq_num_str << " " << seq_num << endl;
-		
+
 		return make_pair (org_name, seq_num);
 
 	} else {
@@ -89,7 +89,7 @@ vector< pair<string, string> > compile_v(vector< pair< pair<string, int>, string
 	vector< pair<string, string> > final_v;
 	pair<string, string> pair_nn;
 	string id;
-	
+
 	vector< pair< pair<string, int>, string> >::iterator it = initial_v.begin();
 	for(it; it != initial_v.end(); ++it) {
 		id = pair_to_string(it->first);
@@ -109,17 +109,17 @@ int main() {
 	pair< pair<string, int>, string> pair_id_seq; // Name, int val, seq
 	pair<string, string> pair_name_seq;		// First: name&#; Second: seq
 	vector< pair<string, string> > orfeome;
-	
+
 	// Input directory to read all .fasta files
 	if(DirectoryExists(path_dir.c_str())) {
-					
+
 		// Read all files in directory
 		DIR *dpdf;
 		struct dirent *epdf;
 		dpdf = opendir(path_dir.c_str());
 		if (dpdf != NULL) {
 			while (epdf = readdir(dpdf)) {
-						
+
 				// Check for valid file extension
 				string file = string(epdf->d_name);
 				string path_file = path_dir;
@@ -150,14 +150,14 @@ int main() {
 						sort (v_name_num_seq.begin(), v_name_num_seq.end());
 						vector< pair<string, string> > orfeome;
 						orfeome = compile_v(v_name_num_seq);
-						
+
 						string ofilename = path_file;
 						ofilename.append(".mm");
 						cout << "Creating " << ofilename << endl;
 						ofstream ofile;
 						ofile.open (ofilename.c_str());
 						if (ofile.is_open()) {
-							
+
 							vector< pair<string, string> >::iterator it = orfeome.begin();
 							for (it; it != orfeome.end(); ++it) {
 								if (it->first != "Empty|0") {
@@ -170,7 +170,7 @@ int main() {
 						}
 						ofile.close();
 						cout << ofilename << " has been created." << endl;
-		
+
 					}// else cout << "Unable to open " << file << endl;
 
 	//								cout << epdf->d_name << endl;

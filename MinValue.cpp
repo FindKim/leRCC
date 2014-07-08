@@ -89,7 +89,7 @@ void MinValue :: add_mins (vector<int>& sum, const vector<int>& min) {
 
 	vector<int>::iterator sum_it = sum.begin();
 	vector<int>::const_iterator min_it = min.begin();
-	
+
 	for (min_it; min_it != min.end(); ++sum_it, ++min_it) {
 		*sum_it += *min_it;
 	}
@@ -150,13 +150,13 @@ void MinValue :: count_min(vector<string>::iterator sigOrf, const vector<string>
 						sig_min[address]++;
 //						cout << address << " " << sig_min[address] << endl;
 					else non_sig_min[address]++;
-					
+
 //					if (address == 100)
 //						cout << id_seq_it->first << endl;
 				}
 			}
 		}
-		
+
 		// Iterates to next significant sequence once that sequence matches
 		// Doesn't matter if it contains min value or is longer than 50 aa
 		if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end())

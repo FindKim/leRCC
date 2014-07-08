@@ -40,7 +40,7 @@ void ExtractMMSeq :: parse_file(const string& filename) {
 	string id, seq;
 	ifstream file(filename.c_str());
 	pair<string, string> id_seq_pair;
-	
+
 	while (!file.eof()) {
 		getline(file, id);
 		getline(file, seq);
@@ -54,7 +54,7 @@ void ExtractMMSeq :: parse_file(const string& filename) {
 bool ExtractMMSeq :: valid_file_extension(const string& filename) {
 
 	ifstream file(filename.c_str());
-	
+
 	try {
 		if (filename.compare(filename.size()-12, filename.size(), ".fasta.mm.mm") == 0) {
 			return true;

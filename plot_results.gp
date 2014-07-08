@@ -43,4 +43,3 @@ plot '' u ($3) title columnheader
 
 
 #pause -1
-

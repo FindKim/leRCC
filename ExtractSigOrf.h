@@ -32,7 +32,7 @@ class ExtractSigOrf {
 			// Vector that contains all seq#;
 		vector< pair<string, int> > sigOrf;
 			// Pair of organism name and sequence number
-			
+
 		string pair_to_string (pair<string, int>);	// Converts pair to str
 		pair<string, int> createPair(string);	// Parse line to pair: name & #
 		int get_seq_num(string);	// Returns sig oseq # w/organism name
@@ -42,4 +42,3 @@ class ExtractSigOrf {
 };
 
 #endif /* defined(____ExtractSigOrf__) */
-

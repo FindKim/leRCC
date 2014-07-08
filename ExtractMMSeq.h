@@ -26,7 +26,7 @@ class ExtractMMSeq {
 			// Returns vector of id & seq
 		bool valid_file_extension(const string&);
 			// Returns T if valid file ext .fasta.mm.mm
-	
+
 	private:
 		vector<pair<string, string> > mm_orfeome;
 			// vector of id & seq pairs from an orfeome file

@@ -34,7 +34,7 @@ class MinValue {
 		void add_mins(vector<int>&, const vector<int>&);
 			// Adds elements in second vector to first vector
 		void print_min(const vector<int>&, const vector<int>&);
-	
+
 	private:
 		vector<int> sig_min;
 			// # of occ for min values for significant seqs
@@ -49,7 +49,7 @@ class MinValue {
 			// Value in the addr is the number of occurences for that value
 		float round(const float&);
 			// Rounds decimal min values to nearest integer
-		
+
 		void set_sig_min(int);		// Initializes sig_run vec with 1-100 0's
 		void set_non_sig_min(int); //""
 		void set_sigOrf_it_pos(vector<string>::iterator);
