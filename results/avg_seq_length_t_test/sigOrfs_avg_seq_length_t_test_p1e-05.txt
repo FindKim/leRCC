@@ -1,0 +1,12 @@
+# t test comparing average sequence lengths of significant & non-sig seqs
+# p-Value 1e-05
+
+    Variable         Sig     Non-Sig
+  n elements       27525      439277
+     Average      650.10      405.27
+    Variance   269014.38   198982.56
+     Std Dev      518.67      446.07
+
+t Value: 0.15
+
+No siginificant difference.

@@ -4,6 +4,7 @@ import os
 import re
 
 pattern = re.compile('sig_pruned_masked_p.+_length\.txt')
+#pattern = re.compile('sig_pruned_masked_p\.05_rcclust_length\.txt')
 LENGTH,SIG_COUNT,NSIG_COUNT = range(3)	# 0, 1, 2
 
 file_out = open('/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_masked/avg_rcclust_length.txt', 'w') # overwrites if exits
@@ -12,10 +13,11 @@ file_out.write('Calculated average length for rare codon clusters differing by p
 file_out.write('\n')
 file_out.write('\n')
 
-for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_masked/"):
+for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/"):
 
 	for filename in files:
 		if pattern.match(filename):
+			print filename
 			file_out.write(filename)
 			file_out.write('\n')
 
@@ -41,6 +43,8 @@ for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_m
 			sig_avg_length = sig_sum_length / sig_num_size_list
 			nsig_avg_length = nsig_sum_length / nsig_num_size_list
 
+			print (sig_num_size_list)
+			print (nsig_num_size_list)
 			file_out.write('sig avg length: ' + str(round(sig_avg_length,2)))
 			file_out.write('\n')
 			file_out.write('non-sig avg length: ' + str(round(nsig_avg_length,2)))

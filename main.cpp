@@ -14,6 +14,7 @@
 #include "MinValue.h"
 #include "AvgSeqLength.h"
 #include "StdDevLength.h"
+#include "RunSum.h"
 #include <iostream>
 #include <iomanip>	// setprecision for decmial places
 #include <string>
@@ -25,11 +26,12 @@
 #include <limits>		// numeric_limits to find max value of type
 //#include <regex>		// Regex to check for valid file ext WHY DOESN'T THE UNIV SUPPORT C++11?!
 
-const string DIRECTORY = "/afs/crc.nd.edu/user/k/kngo/orig_fasta/";
+const string DIRECTORY = "/afs/crc.nd.edu/user/k/kngo/orig_fasta/subset/";
 const string SIGORF_FILE = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_unmasked/sigOrfs_p1e-05.txt";
-const string OUTPUTFILE_CLUSTER_LENGTH = "results/sigOrfs_masked/sig_p1e-05.txt";
-const string OUTPUTFILE_MINVALUE = "results/sigOrfs_masked/sig_p1e-05.txt";
-const string OUTPUTFILE_AVG_LENGTH_T_TEST = "results/avg_seq_length_t_test/sigOrfs_avg_seq_length_t_test_p1e-05.txt";
+const string OUTPUTFILE_CLUSTER_LENGTH = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/rcclust_length/sig_pruned_masked_p1e-05_rcclust_length.txt";
+const string OUTPUTFILE_CLUSTER_SUM = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/rcclust_sum/sig_pruned_masked_p1e-05_rcclust_sum.txt";
+const string OUTPUTFILE_MINVALUE = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/minvalue/sig_pruned_masked_p1e-05_minvalue.txt";
+const string OUTPUTFILE_AVG_LENGTH_T_TEST = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/avg_seq_length_t_test/sigOrfs_avg_seq_length_t_test_p1e-05.txt";
 
 using namespace std;
 
@@ -181,6 +183,67 @@ void create_outputfile_t_test(const string& outputfile, const float& sig_tot_num
 	} else cout << "Unable to open " << outputfile << endl;
 }
 
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ---------------------------CALCULATES RARE CODON CLUSTER LENGTHS
+
+int main() {
+
+	int i = 0;
+	string directory = DIRECTORY;
+	string sigOrf_file = SIGORF_FILE;
+	string outputfile_length = OUTPUTFILE_CLUSTER_SUM;
+
+	vector<string> mmfiles;
+	vector<int> tot_sig_sums(300, 0);
+	vector<int> tot_non_sig_sums(300, 0);
+	
+	ExtractSigOrf sigOrf(sigOrf_file);
+	vector<string> sigOrf_v = sigOrf.get_sigOrf();
+	vector<string>::iterator sigOrf_it = sigOrf_v.begin();
+
+	if (directory_exists(directory.c_str())) {
+	
+		// Traverses directory and returns vector of filenames
+		mmfiles = traverse_directory(directory);
+		cout << "Calculating rare codon cluster %min sums..." << endl;
+		
+		// Iterates through each file
+		vector<string>::iterator file_it = mmfiles.begin();
+		for (file_it; file_it != mmfiles.end(); ++file_it) {
+
+			ExtractMMSeq mm(*file_it);
+
+			// Valid file with extension ".fasta.mm.mm"--sorted .mm file
+			if (mm.valid_file_extension(*file_it)) {;
+
+// COUNTS RARE CODON CLUSTER LENGTHS
+				RunSum compare(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
+
+				vector<int> sr = compare.get_sig_sums();
+				vector<int> nsr = compare.get_non_sig_sums();				
+				if (tot_sig_sums.size() < sr.size() || tot_non_sig_sums.size() < nsr.size()) {
+					resize_vector (tot_sig_sums, sr);
+					resize_vector (tot_non_sig_sums, nsr);
+//					print_total_run(tot_sig_sums, tot_non_sig_sums);
+				}
+				compare.add_sums (tot_sig_sums, sr);
+				compare.add_sums (tot_non_sig_sums, nsr);
+				sigOrf_it = compare.get_it_pos();
+//				compare.print_runs(sr, nsr);
+//				print_total_run(tot_sig_runs, tot_non_sig_runs);
+//				cout << *sigOrf_it << endl;
+			}
+		}
+	}
+	cout << "Finished calculations." << endl;
+	cout << "--------------------------------------------" << endl;
+	
+	string label = "%Min Sum";
+	create_outputfile(outputfile_length, tot_sig_sums, tot_non_sig_sums, label);
+}
+
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ---------------------------CALCULATES RARE CODON CLUSTER LENGTHS
 /*
@@ -296,7 +359,7 @@ int main() {
 // ---------------------------------------CALCULATES AVG SEQ LENGTH
 // ---------------------------------------CALCULATES STD_DEV LENGTH
 // -------------------------------------------------COMPUTES T TEST
-
+/*
 int main() {
 
 	long double sig_tot_sum_length = 0;
@@ -343,15 +406,15 @@ int main() {
 				if (non_sig_tot_sum_length > numeric_limits<long double>::max())
 					cout << "-------------------------------------------------\nTOO LARGE, CHECK CALCULATIONS\n------------------------------------------------" << endl;
 
-/*
-				cout << "next sigOrf is " << *sigOrf_it << endl;
-				cout << *file_it << endl;
-				cout << "Sig Length:\t" << avg.get_sig_sum_length() << "\t" << sig_tot_sum_length << endl;
-				cout << "Sig num:\t" << avg.get_sig_num_seqs() << "\t" << sig_tot_num_seq << endl;
-				cout << "Nsig Length:\t" << avg.get_non_sig_sum_length() << "\t" << non_sig_tot_sum_length << endl;
-				cout << "Nsig num:\t" << avg.get_non_sig_num_seqs() << "\t" << non_sig_tot_num_seq << endl;
-				cout << endl;
-*/			}
+
+//				cout << "next sigOrf is " << *sigOrf_it << endl;
+//				cout << *file_it << endl;
+//				cout << "Sig Length:\t" << avg.get_sig_sum_length() << "\t" << sig_tot_sum_length << endl;
+//				cout << "Sig num:\t" << avg.get_sig_num_seqs() << "\t" << sig_tot_num_seq << endl;
+//				cout << "Nsig Length:\t" << avg.get_non_sig_sum_length() << "\t" << non_sig_tot_sum_length << endl;
+//				cout << "Nsig num:\t" << avg.get_non_sig_num_seqs() << "\t" << non_sig_tot_num_seq << endl;
+//				cout << endl;
+			}
 		}
 	}
 	cout << "Computing variance for " << SIGORF_FILE << endl;
@@ -367,12 +430,11 @@ int main() {
 
 	float sig_avg = AvgSeqLength::calc_avg (sig_tot_sum_length, sig_tot_num_seq);
 	float non_sig_avg = AvgSeqLength::calc_avg (non_sig_tot_sum_length, non_sig_tot_num_seq);
-/*
-	cout << "SIG AVG:\t" << sig_avg << endl;
-	cout << "SIG #SEQ:\t" << sig_tot_num_seq << endl;
-	cout << "NSIG AVG:\t" << non_sig_avg << endl;
-	cout << "NSIG #SEQ:\t" << non_sig_tot_num_seq << endl;
-*/
+
+//	cout << "SIG AVG:\t" << sig_avg << endl;
+//	cout << "SIG #SEQ:\t" << sig_tot_num_seq << endl;
+//	cout << "NSIG AVG:\t" << non_sig_avg << endl;
+//	cout << "NSIG #SEQ:\t" << non_sig_tot_num_seq << endl;
 
 // CALCULATES STD DEVIATION
 	// Iterates through each file
@@ -406,5 +468,5 @@ int main() {
 
 	create_outputfile_t_test(outputfile, sig_tot_num_seq, non_sig_tot_num_seq, sig_avg, non_sig_avg, sig_variance, non_sig_variance, pow(sig_variance, 0.5), pow(non_sig_variance, 0.5), t_value);
 }
-
+*/
 
