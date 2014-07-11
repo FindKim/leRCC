@@ -1,0 +1,22 @@
+Calculated average %min sum for rare codon clusters differing by p-Value cut offs.
+
+sig_pruned_masked_p1e-05_rcclust_sum.txt
+sig avg sum: 711.08
+non-sig avg sum: 141.09
+
+sig_pruned_masked_p.0001_rcclust_sum.txt
+sig avg sum: 889.01
+non-sig avg sum: 140.73
+
+sig_pruned_masked_p.001_rcclust_sum.txt
+sig avg sum: 1157.54
+non-sig avg sum: 140.79
+
+sig_pruned_masked_p.01_rcclust_sum.txt
+sig avg sum: 881.78
+non-sig avg sum: 140.09
+
+sig_pruned_masked_p.05_rcclust_sum.txt
+sig avg sum: 994.51
+non-sig avg sum: 139.07
+

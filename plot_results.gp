@@ -15,7 +15,7 @@ set output "sigOrfs_masked/sig_pruned_masked_p.0001_minvalue.ps"
 set xtics 0, 20 nomirror out
 set ytics nomirror out
 ###			set xrange [0:150]
-set xrange [0:100]
+set xrange [0:4000]
 set auto y
 ###		set xlabel "Rare Codon Cluster Length"
 set xlabel "Absolute %Min Value"
