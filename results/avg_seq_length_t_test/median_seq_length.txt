@@ -1,0 +1,22 @@
+Calculated median seq length for significant and non-significant sequences differing by p-Value cut offs.
+
+sigOrfs_seq_length_p1e-05.txt
+sig median seq length: 502.0
+non-sig median seq length: 306.0
+
+sigOrfs_seq_length_p.0001.txt
+sig median seq length: 494.0
+non-sig median seq length: 302.0
+
+sigOrfs_seq_length_p.001.txt
+sig median seq length: 479.0
+non-sig median seq length: 305.0
+
+sigOrfs_seq_length_p.01.txt
+sig median seq length: 432.0
+non-sig median seq length: 295.0
+
+sigOrfs_seq_length_p.05.txt
+sig median seq length: 416.0
+non-sig median seq length: 291.0
+

@@ -1,0 +1,32 @@
+Calculated standard deviation for sequence length differing by p-Value cut offs.
+
+sigOrfs_seq_length_p1e-05.txt
+sig number of seqs: 27525.0
+non-sig number of seqs: 433377.0
+sig std dev: 518.67
+non-sig std dev: 446.57
+
+sigOrfs_seq_length_p.0001.txt
+sig number of seqs: 38144.0
+non-sig number of seqs: 422758.0
+sig std dev: 513.13
+non-sig std dev: 443.89
+
+sigOrfs_seq_length_p.001.txt
+sig number of seqs: 29972.0
+non-sig number of seqs: 430930.0
+sig std dev: 515.82
+non-sig std dev: 446.5
+
+sigOrfs_seq_length_p.01.txt
+sig number of seqs: 71100.0
+non-sig number of seqs: 389802.0
+sig std dev: 468.38
+non-sig std dev: 447.72
+
+sigOrfs_seq_length_p.05.txt
+sig number of seqs: 93663.0
+non-sig number of seqs: 367239.0
+sig std dev: 453.68
+non-sig std dev: 450.23
+

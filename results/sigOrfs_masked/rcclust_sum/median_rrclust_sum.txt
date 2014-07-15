@@ -1,0 +1,22 @@
+Calculated median rare codon cluster %min sum for significant and non-significant sequences differing by p-Value cut offs.
+
+sig_pruned_masked_p1e-05_rcclust_sum.txt
+sig median seq length: 113.0
+non-sig median seq length: 17.0
+
+sig_pruned_masked_p.0001_rcclust_sum.txt
+sig median seq length: 113.0
+non-sig median seq length: 17.0
+
+sig_pruned_masked_p.001_rcclust_sum.txt
+sig median seq length: 133.5
+non-sig median seq length: 17.0
+
+sig_pruned_masked_p.01_rcclust_sum.txt
+sig median seq length: 122.0
+non-sig median seq length: 17.0
+
+sig_pruned_masked_p.05_rcclust_sum.txt
+sig median seq length: 139.0
+non-sig median seq length: 17.0
+

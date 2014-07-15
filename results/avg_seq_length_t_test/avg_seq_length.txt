@@ -1,0 +1,22 @@
+Calculated average seq length for significant and non-significant sequences differing by p-Value cut offs.
+
+sigOrfs_seq_length_p1e-05.txt
+sig avg seq length: 650.1
+non-sig avg seq length: 410.79
+
+sigOrfs_seq_length_p.0001.txt
+sig avg seq length: 642.8
+non-sig avg seq length: 405.43
+
+sigOrfs_seq_length_p.001.txt
+sig avg seq length: 636.0
+non-sig avg seq length: 410.41
+
+sigOrfs_seq_length_p.01.txt
+sig avg seq length: 562.16
+non-sig avg seq length: 400.07
+
+sigOrfs_seq_length_p.05.txt
+sig avg seq length: 541.53
+non-sig avg seq length: 395.38
+

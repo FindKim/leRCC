@@ -40,6 +40,11 @@ class AvgSeqLength {
 			// Adds current count to total running count
 		static float calc_avg(const float&, const float&);
 			// Returns average of sum/num of events for avg seq length
+		
+		vector<int> get_sig_num_occ();
+		vector<int> get_non_sig_num_occ();
+		void add_num_occ_v(vector<int>&, const vector<int>&);
+		void print_num_occ(const vector<int>&, const vector<int>&ns);
 
 	private:
 		float sig_sum_length;
@@ -55,6 +60,12 @@ class AvgSeqLength {
 		void calc_sum_length(vector<string>::iterator,
 			const vector<string>&, const vector<pair<string, string> >&);
 			// Sums up seq length & increments # of seqs for sig & non-sig seqs
+		
+		vector<int> sig_num_occ;
+		vector<int> non_sig_num_occ;
+		void set_sig_num_occ(int);
+		void set_non_sig_num_occ(int);
+		void calc_num_occ(vector<string>::iterator, const vector<string>&, const vector<pair<string, string> >&);
 
 };
 

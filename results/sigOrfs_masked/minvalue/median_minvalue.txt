@@ -1,0 +1,22 @@
+Calculated median %min value for significant and non-significant sequences differing by p-Value cut offs.
+
+sig_pruned_masked_p.0001_minvalue.txt
+sig median %min value: 12.0
+non-sig median %min value: 12.0
+
+sig_pruned_masked_p.001_minvalue.txt
+sig median %min value: 12.0
+non-sig median %min value: 12.0
+
+sig_pruned_masked_p.01_minvalue.txt
+sig median %min value: 12.0
+non-sig median %min value: 12.0
+
+sig_pruned_masked_p.05_minvalue.txt
+sig median %min value: 12.0
+non-sig median %min value: 12.0
+
+sig_pruned_masked_p1e-05_minvalue.txt
+sig median %min value: 13.0
+non-sig median %min value: 12.0
+

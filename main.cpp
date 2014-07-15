@@ -26,12 +26,13 @@
 #include <limits>		// numeric_limits to find max value of type
 //#include <regex>		// Regex to check for valid file ext WHY DOESN'T THE UNIV SUPPORT C++11?!
 
-const string DIRECTORY = "/afs/crc.nd.edu/user/k/kngo/orig_fasta/subset/";
+const string DIRECTORY = "/afs/crc.nd.edu/user/k/kngo/orig_fasta/";
 const string SIGORF_FILE = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_unmasked/sigOrfs_p1e-05.txt";
 const string OUTPUTFILE_CLUSTER_LENGTH = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/rcclust_length/sig_pruned_masked_p1e-05_rcclust_length.txt";
 const string OUTPUTFILE_CLUSTER_SUM = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/rcclust_sum/sig_pruned_masked_p1e-05_rcclust_sum.txt";
 const string OUTPUTFILE_MINVALUE = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/minvalue/sig_pruned_masked_p1e-05_minvalue.txt";
 const string OUTPUTFILE_AVG_LENGTH_T_TEST = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/avg_seq_length_t_test/sigOrfs_avg_seq_length_t_test_p1e-05.txt";
+const string OUTPUTFILE_SEQ_LENGTH = "/afs/crc.nd.edu/user/k/kngo/leRCC/results/avg_seq_length_t_test/sigOrfs_seq_length_p1e-05.txt";
 
 using namespace std;
 
@@ -186,7 +187,7 @@ void create_outputfile_t_test(const string& outputfile, const float& sig_tot_num
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ---------------------------CALCULATES RARE CODON CLUSTER LENGTHS
-
+/*
 int main() {
 
 	int i = 0;
@@ -242,7 +243,7 @@ int main() {
 	string label = "%Min Sum";
 	create_outputfile(outputfile_length, tot_sig_sums, tot_non_sig_sums, label);
 }
-
+*/
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ---------------------------CALCULATES RARE CODON CLUSTER LENGTHS
@@ -359,13 +360,16 @@ int main() {
 // ---------------------------------------CALCULATES AVG SEQ LENGTH
 // ---------------------------------------CALCULATES STD_DEV LENGTH
 // -------------------------------------------------COMPUTES T TEST
-/*
+
 int main() {
 
 	long double sig_tot_sum_length = 0;
 	long double non_sig_tot_sum_length = 0;
 	float sig_tot_num_seq = 0;
 	float non_sig_tot_num_seq = 0;
+	
+	vector<int> tot_sig_num_occ(300,0);
+	vector<int> tot_non_sig_num_occ(300,0);
 
 	string directory = DIRECTORY;
 	string sigOrf_file = SIGORF_FILE;
@@ -391,20 +395,32 @@ int main() {
 			ExtractMMSeq mm(*file_it);
 
 			// Valid file with extension ".fasta.mm.mm"--sorted .mm file
-			if (mm.valid_file_extension(*file_it)) {;
-
+			if (mm.valid_file_extension(*file_it)) {
+//				cout << *file_it << endl;
 // CALCULATES AVG SEQ LENGTH
 				AvgSeqLength avg(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
-				
-				sig_tot_sum_length += avg.get_sig_sum_length();
-				non_sig_tot_sum_length += avg.get_non_sig_sum_length();
-				sig_tot_num_seq += avg.get_sig_num_seqs();
-				non_sig_tot_num_seq += avg.get_non_sig_num_seqs();
-				
+
+				vector<int> s = avg.get_sig_num_occ();
+				vector<int> ns = avg.get_non_sig_num_occ();
+
+				if (tot_sig_num_occ.size() < s.size() || tot_non_sig_num_occ.size() < ns.size()) {
+					resize_vector (tot_sig_num_occ, s);
+					resize_vector (tot_non_sig_num_occ, ns);
+//					print_total_run(tot_sig_num_occ, tot_non_sig_num_occ);
+				}
+				avg.add_num_occ_v (tot_sig_num_occ, s);
+				avg.add_num_occ_v (tot_non_sig_num_occ, ns);
 				sigOrf_it = avg.get_it_pos();
+
+//				sig_tot_sum_length += avg.get_sig_sum_length();
+//				non_sig_tot_sum_length += avg.get_non_sig_sum_length();
+//				sig_tot_num_seq += avg.get_sig_num_seqs();
+//				non_sig_tot_num_seq += avg.get_non_sig_num_seqs();
 				
-				if (non_sig_tot_sum_length > numeric_limits<long double>::max())
-					cout << "-------------------------------------------------\nTOO LARGE, CHECK CALCULATIONS\n------------------------------------------------" << endl;
+//				sigOrf_it = avg.get_it_pos();
+				
+//				if (non_sig_tot_sum_length > numeric_limits<long double>::max())
+//					cout << "-------------------------------------------------\nTOO LARGE, CHECK CALCULATIONS\n------------------------------------------------" << endl;
 
 
 //				cout << "next sigOrf is " << *sigOrf_it << endl;
@@ -417,6 +433,9 @@ int main() {
 			}
 		}
 	}
+	string type = "Seq Length";
+	create_outputfile(OUTPUTFILE_SEQ_LENGTH, tot_sig_num_occ, tot_non_sig_num_occ, type);
+/*
 	cout << "Computing variance for " << SIGORF_FILE << endl;
 
 	float sig_variance_numerator = 0;
@@ -467,6 +486,7 @@ int main() {
 	t_value = StdDevLength::calc_t_value (sig_avg, non_sig_avg, sigma_d);
 
 	create_outputfile_t_test(outputfile, sig_tot_num_seq, non_sig_tot_num_seq, sig_avg, non_sig_avg, sig_variance, non_sig_variance, pow(sig_variance, 0.5), pow(non_sig_variance, 0.5), t_value);
-}
 */
+}
+
 
