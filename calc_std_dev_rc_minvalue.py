@@ -6,13 +6,14 @@ import re
 pattern = re.compile('sig_pruned_masked_p.+_minvalue\.txt')
 LENGTH,SIG_COUNT,NSIG_COUNT = range(3)	# 0, 1, 2
 
-file_out = open('/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_masked/std_dev_rc_minvalue.txt', 'w') # overwrites if exits
+file_out = open('/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/minvalue/std_dev_rc_minvalue.txt', 'w') # overwrites if exits
 
-file_out.write('Calculated standard deviation for rare codon absolute %Min values differing by p-Value cut offs.')
+file_out.write('Calculated standard deviation for rare codon absolute %Min values differing by p-Value cut offs.\n')
+file_out.write('Unbiased estimator of the popultation variance used for T-Test')
 file_out.write('\n')
 file_out.write('\n')
 
-for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_masked/"):
+for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/minvalue/"):
 
 	for filename in files:
 		if pattern.match(filename):
@@ -67,8 +68,8 @@ for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_m
 					print '\n'
 					'''
 
-				sig_std_dev = (sig_sum_val_avg_sqr_diff/(sig_num_size_list-1))**(0.5)
-				nsig_std_dev = (nsig_sum_val_avg_sqr_diff/(nsig_num_size_list-1))**(0.5)
+				sig_std_dev = (sig_sum_val_avg_sqr_diff/(sig_num_size_list))**(0.5)
+				nsig_std_dev = (nsig_sum_val_avg_sqr_diff/(nsig_num_size_list))**(0.5)
 
 				file_out.write('sig std dev: ' + str(round(sig_std_dev,2)))
 				file_out.write('\n')

@@ -1,22 +1,22 @@
-Calculated standard deviation for rare codon cluster %min sums differing by p-Value cut offs.
+Calculated standard deviation for rare codon cluster %min sums differing by p-Value cut offs.Unbiased estimator of the popultation variance used for T-Test
 
 sig_pruned_masked_p1e-05_rcclust_sum.txt
-sig std dev: 2241.67
-non-sig std dev: 649.49
+sig std dev: 2239.71
+non-sig std dev: 649.48
 
 sig_pruned_masked_p.0001_rcclust_sum.txt
-sig std dev: 2976.92
+sig std dev: 2974.76
 non-sig std dev: 644.53
 
 sig_pruned_masked_p.001_rcclust_sum.txt
-sig std dev: 3477.59
+sig std dev: 3473.92
 non-sig std dev: 644.81
 
 sig_pruned_masked_p.01_rcclust_sum.txt
-sig std dev: 2824.6
+sig std dev: 2823.37
 non-sig std dev: 639.92
 
 sig_pruned_masked_p.05_rcclust_sum.txt
-sig std dev: 3394.99
+sig std dev: 3393.94
 non-sig std dev: 625.03
 

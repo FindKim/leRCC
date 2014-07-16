@@ -9,6 +9,7 @@ LENGTH,SIG_COUNT,NSIG_COUNT = range(3)	# 0, 1, 2
 file_out = open('/afs/crc.nd.edu/user/k/kngo/leRCC/results/avg_seq_length_t_test/std_dev_seq_length.txt', 'w') # overwrites if exits
 
 file_out.write('Calculated standard deviation for sequence length differing by p-Value cut offs.')
+file_out.write('Unbiased estimator of the popultation variance used for T-Test')
 file_out.write('\n')
 file_out.write('\n')
 
@@ -67,12 +68,12 @@ for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/results/a
 					print '\n'
 					'''
 
-				sig_std_dev = (sig_sum_val_avg_sqr_diff/(sig_num_size_list-1))**(0.5)
-				nsig_std_dev = (nsig_sum_val_avg_sqr_diff/(nsig_num_size_list-1))**(0.5)
+				sig_std_dev = (sig_sum_val_avg_sqr_diff/(sig_num_size_list))**(0.5)
+				nsig_std_dev = (nsig_sum_val_avg_sqr_diff/(nsig_num_size_list))**(0.5)
 
-				file_out.write('sig number of seqs: ' + str(sig_num_size_list))
+				file_out.write('sig number of seqs: ' + str(int(sig_num_size_list)))
 				file_out.write('\n')
-				file_out.write('non-sig number of seqs: ' + str(nsig_num_size_list))
+				file_out.write('non-sig number of seqs: ' + str(int(nsig_num_size_list)))
 				file_out.write('\n')
 
 				file_out.write('sig std dev: ' + str(round(sig_std_dev,2)))

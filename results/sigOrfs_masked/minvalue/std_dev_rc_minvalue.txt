@@ -1,12 +1,13 @@
 Calculated standard deviation for rare codon absolute %Min values differing by p-Value cut offs.
-
-sig_pruned_masked_p.001_minvalue.txt
-sig std dev: 13.82
-non-sig std dev: 14.35
+Unbiased estimator of the popultation variance used for T-Test
 
 sig_pruned_masked_p.0001_minvalue.txt
 sig std dev: 13.86
 non-sig std dev: 14.37
+
+sig_pruned_masked_p.001_minvalue.txt
+sig std dev: 13.82
+non-sig std dev: 14.35
 
 sig_pruned_masked_p.01_minvalue.txt
 sig std dev: 13.84
