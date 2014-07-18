@@ -9,11 +9,11 @@ sig avg seq length: 642.8
 non-sig avg seq length: 405.43
 
 sigOrfs_seq_length_p.001.txt
-sig avg seq length: 636.0
+sig avg seq length: 635.99
 non-sig avg seq length: 410.41
 
 sigOrfs_seq_length_p.01.txt
-sig avg seq length: 562.16
+sig avg seq length: 562.17
 non-sig avg seq length: 400.07
 
 sigOrfs_seq_length_p.05.txt

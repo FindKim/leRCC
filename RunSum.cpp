@@ -123,6 +123,7 @@ float RunSum :: round(const float& num) {
 void RunSum :: calc_run_sum(vector<string>::iterator sigOrf, const vector<string>& sigOrf_v, const vector< pair< string, string> >& id_seq) {
 
 	float min_run_sum = 0;
+	int min_run_count = 0;
 
 	// Iterates through pairs in the vector id_seq
 	vector< pair< string, string> >::const_iterator id_seq_it = id_seq.begin();	
@@ -143,9 +144,10 @@ void RunSum :: calc_run_sum(vector<string>::iterator sigOrf, const vector<string
 
 			for (it; it != mm_number_v.end(); ++it) {
 				min_run_sum = 0;			// Reset sum every max value break
+				min_run_count = 0;		// Counts consecutive
 				while (*it < 0) {				// Continuous min values
 					min_run_sum += abs(*it);	// Absolute value of min
-//					cout << *it << " " << min_run_sum << endl;
+					min_run_count++;
 					// Prevents from running off vec
 					if (it+1 != mm_number_v.end())
 						++it;
@@ -162,21 +164,22 @@ void RunSum :: calc_run_sum(vector<string>::iterator sigOrf, const vector<string
 					non_sig_sums.resize(min_run_sum+1, 0);
 //					cout << "local resized here to " << min_run_sum+1 << endl;
 				}
-
-				// If id matches significant orfeome, increment accordingly
-				if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end()) {
-
-					if (min_run_sum > 0)
+			
+				// if count > 0 to account for sums that round to 0
+				if (min_run_count > 0) {
+					// If id matches significant orfeome, increment accordingly
+					if (*sigOrf == id_seq_it->first) {
 						sig_sums[min_run_sum]++;
-					++sigOrf;
-//					cout << "Significant: " << min_run_sum << " " << sig_sums[min_run_sum] << endl;
-//					cout << "next significant seq: " << *sigOrf << endl << endl;
-				} else if (min_run_sum > 0) {
-					non_sig_sums[min_run_sum]++;
-//					cout << "Non-sig: " << min_run_sum << " " << non_sig_sums[min_run_sum] << endl;
+//						cout << endl << "Significant: " << *sigOrf << " " << min_run_sum << " " << sig_sums[min_run_sum] << endl;
+					} else {
+						non_sig_sums[min_run_sum]++;
+//						cout << "Non-sig: " << min_run_sum << " " << non_sig_sums[min_run_sum] << endl;
+					}
 				}
 			}
 		}
+		if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end())
+			++sigOrf;
 	}
 	set_sigOrf_it_pos(sigOrf);
 }

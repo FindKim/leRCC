@@ -39,13 +39,16 @@ for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/results/s
 					nsig_sum_sum += float(line[NSIG_COUNT])*float(line[SUM])
 					nsig_num_size_list += float(line[NSIG_COUNT])
 
-
 			sig_avg_sum = sig_sum_sum / sig_num_size_list
 			nsig_avg_sum = nsig_sum_sum / nsig_num_size_list
 
+			print sig_num_size_list
+			print nsig_num_size_list
+			'''
 			print (str(sig_avg_sum) + " = " + str(sig_sum_sum) + " / " + str(sig_num_size_list))
 			print (str(nsig_avg_sum) + " = " + str(nsig_sum_sum) + " / " + str(nsig_num_size_list))
 			print "\n"
+			'''
 			file_out.write('sig avg sum: ' + str(round(sig_avg_sum,2)))
 			file_out.write('\n')
 			file_out.write('non-sig avg sum: ' + str(round(nsig_avg_sum,2)))

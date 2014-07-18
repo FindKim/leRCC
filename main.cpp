@@ -12,8 +12,7 @@
 #include "ExtractSigOrf.h"
 #include "RunLength.h"
 #include "MinValue.h"
-#include "AvgSeqLength.h"
-#include "StdDevLength.h"
+#include "SeqLength.h"
 #include "RunSum.h"
 #include <iostream>
 #include <iomanip>	// setprecision for decmial places
@@ -131,63 +130,10 @@ void create_outputfile(const string& filename, const vector<int>& sig_runs, cons
 }
 
 
-// Creates output file that writes # elements, avg, variance, std dev,
-// t value, and determines if diff btwn avg are significantly different
-void create_outputfile_t_test(const string& outputfile, const float& sig_tot_num_seq, const float& non_sig_tot_num_seq, const float& sig_avg, const float& non_sig_avg, const float& sig_var, const float& non_sig_var, const float& sig_std_dev, const float& non_sig_std_dev, const float& t_value) {
-
-	cout << "Creating " << outputfile << "..." << endl;
-	ofstream ofile;
-	ofile.open (outputfile.c_str());
-	
-	if (ofile.is_open()) {
-		ofile << "# t test comparing average sequence lengths of significant & non-sig seqs\n# p-Value 1e-05" << endl << endl;
-		ofile << setw(12) << "Variable" << setw(12) << "Sig" << setw(12) << "Non-Sig" << endl;
-
-		ofile << setw(12) << "n elements" << setw(12)
-			<< sig_tot_num_seq << setw(12) << non_sig_tot_num_seq << endl;
-
-		ofile.precision(2); // fixed format for two decimal places
-		ofile << fixed;
-		
-		ofile << setw(12) << "Average" << setw(12)
-			<< sig_avg << setw(12) << non_sig_avg << endl;
-
-		ofile << setw(12) << "Variance" << setw(12)
-			<< sig_var << setw(12) << non_sig_var << endl;
-
-		ofile << setw(12) << "Std Dev" << setw(12)
-			<< sig_std_dev << setw(12) << non_sig_std_dev << endl;
-		
-		ofile << endl;
-		ofile << "t Value: " << t_value << endl;
-		ofile << endl;
-
-		float degree_of_freedom = (sig_tot_num_seq + non_sig_tot_num_seq)-2;
-		if (degree_of_freedom > 120)
-			if (t_value > 3.29)
-				ofile << "A significant difference at probability = 0.001" << endl;
-			else if (t_value > 2.58)
-				ofile << "A significant difference at probability = 0.01." << endl;
-			else if (t_value > 1.96)
-				ofile << "A significant difference at probability = 0.05" << endl;
-			else if (t_value > 1.65)
-				ofile << "A significant difference at probability = 0.1" << endl;
-			else
-				ofile << "No siginificant difference." << endl;
-		
-		else
-			ofile << "Select a smaller degree of freedom value from t table." << endl;
-
-		ofile.close();
-		cout << outputfile << " has been created." << endl;
-
-	} else cout << "Unable to open " << outputfile << endl;
-}
-
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// ---------------------------CALCULATES RARE CODON CLUSTER LENGTHS
 /*
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ---------------------------CALCULATES RARE CODON CLUSTER SUM
+
 int main() {
 
 	int i = 0;
@@ -237,6 +183,21 @@ int main() {
 			}
 		}
 	}
+	
+	int snum_seq = 0;
+	int nsnum_seq = 0;
+	
+	for (int i = 0; i < tot_non_sig_sums.size(); i++) {
+		nsnum_seq += tot_non_sig_sums[i];
+	}
+	
+	for (int i = 0; i < tot_non_sig_sums.size(); i++) {
+		snum_seq += tot_sig_sums[i];
+	}	
+	
+	cout << snum_seq << endl;
+	cout << nsnum_seq << endl;
+	
 	cout << "Finished calculations." << endl;
 	cout << "--------------------------------------------" << endl;
 	
@@ -253,7 +214,7 @@ int main() {
 	int i = 0;
 	string directory = DIRECTORY;
 	string sigOrf_file = SIGORF_FILE;
-	string outputfile_length = OUTPUTFILE_LENGTH;
+	string outputfile_length = OUTPUTFILE_CLUSTER_LENGTH;
 
 	vector<string> mmfiles;
 	vector<int> tot_sig_runs(300, 0);
@@ -275,7 +236,7 @@ int main() {
 			ExtractMMSeq mm(*file_it);
 
 			// Valid file with extension ".fasta.mm.mm"--sorted .mm file
-			if (mm.valid_file_extension(*file_it)) {;
+			if (mm.valid_file_extension(*file_it)) {
 
 // COUNTS RARE CODON CLUSTER LENGTHS
 				RunLength compare(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
@@ -296,6 +257,20 @@ int main() {
 			}
 		}
 	}
+	int snum_seq = 0;
+	int nsnum_seq = 0;
+	
+	for (int i = 0; i < tot_non_sig_runs.size(); i++) {
+		nsnum_seq += tot_non_sig_runs[i];
+	}
+	
+	for (int i = 0; i < tot_non_sig_runs.size(); i++) {
+		snum_seq += tot_sig_runs[i];
+	}	
+	
+	cout << snum_seq << endl;
+	cout << nsnum_seq << endl;
+	
 	cout << "--------------------------------------------" << endl;
 	
 	string length = "Length";
@@ -357,9 +332,7 @@ int main() {
 }
 */
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// ---------------------------------------CALCULATES AVG SEQ LENGTH
-// ---------------------------------------CALCULATES STD_DEV LENGTH
-// -------------------------------------------------COMPUTES T TEST
+// -----------------------------------CALCULATES SEQ LENGTH
 
 int main() {
 
@@ -397,8 +370,8 @@ int main() {
 			// Valid file with extension ".fasta.mm.mm"--sorted .mm file
 			if (mm.valid_file_extension(*file_it)) {
 //				cout << *file_it << endl;
-// CALCULATES AVG SEQ LENGTH
-				AvgSeqLength avg(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
+// CALCULATES SEQ LENGTH
+				SeqLength avg(sigOrf_it, sigOrf_v, mm.get_mm_orfeome());
 
 				vector<int> s = avg.get_sig_num_occ();
 				vector<int> ns = avg.get_non_sig_num_occ();
@@ -412,81 +385,14 @@ int main() {
 				avg.add_num_occ_v (tot_non_sig_num_occ, ns);
 				sigOrf_it = avg.get_it_pos();
 
-//				sig_tot_sum_length += avg.get_sig_sum_length();
-//				non_sig_tot_sum_length += avg.get_non_sig_sum_length();
-//				sig_tot_num_seq += avg.get_sig_num_seqs();
-//				non_sig_tot_num_seq += avg.get_non_sig_num_seqs();
-				
-//				sigOrf_it = avg.get_it_pos();
-				
-//				if (non_sig_tot_sum_length > numeric_limits<long double>::max())
-//					cout << "-------------------------------------------------\nTOO LARGE, CHECK CALCULATIONS\n------------------------------------------------" << endl;
-
-
-//				cout << "next sigOrf is " << *sigOrf_it << endl;
-//				cout << *file_it << endl;
-//				cout << "Sig Length:\t" << avg.get_sig_sum_length() << "\t" << sig_tot_sum_length << endl;
-//				cout << "Sig num:\t" << avg.get_sig_num_seqs() << "\t" << sig_tot_num_seq << endl;
-//				cout << "Nsig Length:\t" << avg.get_non_sig_sum_length() << "\t" << non_sig_tot_sum_length << endl;
-//				cout << "Nsig num:\t" << avg.get_non_sig_num_seqs() << "\t" << non_sig_tot_num_seq << endl;
-//				cout << endl;
+				if (non_sig_tot_sum_length > numeric_limits<long double>::max())
+					cout << "-------------------------------------------------\nTOO LARGE, CHECK CALCULATIONS\n------------------------------------------------" << endl;
 			}
 		}
 	}
 	string type = "Seq Length";
 	create_outputfile(OUTPUTFILE_SEQ_LENGTH, tot_sig_num_occ, tot_non_sig_num_occ, type);
-/*
-	cout << "Computing variance for " << SIGORF_FILE << endl;
 
-	float sig_variance_numerator = 0;
-	float non_sig_variance_numerator = 0;
-	float sig_variance = 0;
-	float non_sig_variance = 0;
-	float sig_std_dev = 0;
-	float non_sig_std_dev = 0;
-	long double sigma_d = 0;
-	float t_value = 0;
-
-	float sig_avg = AvgSeqLength::calc_avg (sig_tot_sum_length, sig_tot_num_seq);
-	float non_sig_avg = AvgSeqLength::calc_avg (non_sig_tot_sum_length, non_sig_tot_num_seq);
-
-//	cout << "SIG AVG:\t" << sig_avg << endl;
-//	cout << "SIG #SEQ:\t" << sig_tot_num_seq << endl;
-//	cout << "NSIG AVG:\t" << non_sig_avg << endl;
-//	cout << "NSIG #SEQ:\t" << non_sig_tot_num_seq << endl;
-
-// CALCULATES STD DEVIATION
-	// Iterates through each file
-	sigOrf_it = sigOrf_v.begin();
-	vector<string>::iterator file_it = mmfiles.begin();
-	for (file_it; file_it != mmfiles.end(); ++file_it) {
-
-		ExtractMMSeq mm(*file_it);
-
-		// Valid file with extension ".fasta.mm.mm"--sorted .mm file
-		if (mm.valid_file_extension(*file_it)) {
-			
-			StdDevLength t(sigOrf_it, sigOrf_v, mm.get_mm_orfeome(), sig_avg, non_sig_avg);
-			sig_variance_numerator += t.get_sig_var_numerator_sum();
-			non_sig_variance_numerator += t.get_non_sig_var_numerator_sum();
-						
-			sigOrf_it = t.get_it_pos();
-		}
-	}
-
-	cout << "Computing t test for " << SIGORF_FILE << endl;
-
-	sig_variance = StdDevLength::calc_variance (sig_variance_numerator, sig_tot_num_seq);
-	non_sig_variance = StdDevLength::calc_variance  (non_sig_variance_numerator, non_sig_tot_num_seq);
-	
-	// sigma_d = sqrt(variance of difference btwn means)
-	sigma_d = StdDevLength::calc_sigma_d (sig_variance, sig_tot_num_seq, non_sig_variance, non_sig_tot_num_seq);
-	
-	// sig avg, non-sig avg, sigma_d
-	t_value = StdDevLength::calc_t_value (sig_avg, non_sig_avg, sigma_d);
-
-	create_outputfile_t_test(outputfile, sig_tot_num_seq, non_sig_tot_num_seq, sig_avg, non_sig_avg, sig_variance, non_sig_variance, pow(sig_variance, 0.5), pow(non_sig_variance, 0.5), t_value);
-*/
 }
 
 

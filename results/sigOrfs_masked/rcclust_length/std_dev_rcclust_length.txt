@@ -1,22 +1,22 @@
 Calculated standard deviation for rare codon cluster length differing by p-Value cut offs.Unbiased estimator of the popultation variance used for T-Test
 
 sig_pruned_masked_p.0001_rcclust_length.txt
-sig std dev: 26.47
-non-sig std dev: 11.2
+sig std dev: 10.03
+non-sig std dev: 11.44
 
 sig_pruned_masked_p.001_rcclust_length.txt
-sig std dev: 27.13
-non-sig std dev: 11.21
+sig std dev: 9.89
+non-sig std dev: 11.4
 
 sig_pruned_masked_p.01_rcclust_length.txt
-sig std dev: 26.91
-non-sig std dev: 11.17
+sig std dev: 9.76
+non-sig std dev: 11.63
 
 sig_pruned_masked_p.05_rcclust_length.txt
-sig std dev: 29.52
-non-sig std dev: 11.13
+sig std dev: 10.1
+non-sig std dev: 11.64
 
 sig_pruned_masked_p1e-05_rcclust_length.txt
-sig std dev: 22.73
-non-sig std dev: 11.22
+sig std dev: 10.21
+non-sig std dev: 11.37
 

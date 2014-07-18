@@ -143,6 +143,7 @@ void MinValue :: count_min(vector<string>::iterator sigOrf, const vector<string>
 			// Iterates through each minmax value
 			// Increments address of min value for every occurence
 			for (it; it != mm_number_v.end(); ++it) {
+			
 				if (*it < 0) {
 					int address = round(abs(*it));
 //					cout << *it << " -> " << address << endl;
@@ -150,9 +151,6 @@ void MinValue :: count_min(vector<string>::iterator sigOrf, const vector<string>
 						sig_min[address]++;
 //						cout << address << " " << sig_min[address] << endl;
 					else non_sig_min[address]++;
-
-//					if (address == 100)
-//						cout << id_seq_it->first << endl;
 				}
 			}
 		}

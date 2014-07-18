@@ -1,32 +1,32 @@
 Calculated standard deviation for sequence length differing by p-Value cut offs.Unbiased estimator of the popultation variance used for T-Test
 
 sigOrfs_seq_length_p1e-05.txt
-sig number of seqs: 27525
-non-sig number of seqs: 433377
-sig std dev: 518.66
+sig number of seqs: 27526
+non-sig number of seqs: 433380
+sig std dev: 518.65
 non-sig std dev: 446.57
 
 sigOrfs_seq_length_p.0001.txt
-sig number of seqs: 38144
-non-sig number of seqs: 422758
-sig std dev: 513.13
+sig number of seqs: 38145
+non-sig number of seqs: 422761
+sig std dev: 513.12
 non-sig std dev: 443.89
 
 sigOrfs_seq_length_p.001.txt
-sig number of seqs: 29972
-non-sig number of seqs: 430930
-sig std dev: 515.81
+sig number of seqs: 29973
+non-sig number of seqs: 430933
+sig std dev: 515.8
 non-sig std dev: 446.5
 
 sigOrfs_seq_length_p.01.txt
-sig number of seqs: 71100
-non-sig number of seqs: 389802
-sig std dev: 468.38
+sig number of seqs: 71101
+non-sig number of seqs: 389805
+sig std dev: 468.37
 non-sig std dev: 447.71
 
 sigOrfs_seq_length_p.05.txt
-sig number of seqs: 93663
-non-sig number of seqs: 367239
+sig number of seqs: 93664
+non-sig number of seqs: 367242
 sig std dev: 453.68
 non-sig std dev: 450.23
 

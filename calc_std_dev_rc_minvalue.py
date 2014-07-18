@@ -68,6 +68,10 @@ for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/results/s
 					print '\n'
 					'''
 
+				print filename
+				print (sig_num_size_list)
+				print (nsig_num_size_list)
+
 				sig_std_dev = (sig_sum_val_avg_sqr_diff/(sig_num_size_list))**(0.5)
 				nsig_std_dev = (nsig_sum_val_avg_sqr_diff/(nsig_num_size_list))**(0.5)
 

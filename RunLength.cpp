@@ -124,7 +124,6 @@ void RunLength :: count_runs(vector<string>::iterator sigOrf, const vector<strin
 		// Parse the minmax values string by ','
 		vector<float> mm_number_v;
 		mm_number_v = parse_mm_seq(id_seq_it->second);
-//		cout << endl;
 
 		// Masks the first 50 amino acids considering 17 codon windows
 		// Iterates through min max values and counts for min runs
@@ -136,40 +135,39 @@ void RunLength :: count_runs(vector<string>::iterator sigOrf, const vector<strin
 //			cout << *it << endl;
 
 			for (it; it != mm_number_v.end(); ++it) {
+
 				min_run_count = 0;			// Reset count every max value break
 				while (*it < 0) {				// Continuous min values
 					min_run_count++;
-//					cout << *it << " ";
+					
 					// Prevents from running off vec
 					if (it+1 != mm_number_v.end())
 						++it;
 					else break;
 				}
-		//			if (min_run_count > 0) {
-		//				cout << endl << id_seq_it->first << " " << min_run_count << endl;
-		//			}
 
 				if (min_run_count > sig_runs.size()
 					|| min_run_count > non_sig_runs.size()) {
-	//				cout << "local resized here to " << min_run_count+1 << endl;
 					sig_runs.resize(min_run_count+1, 0);
 					non_sig_runs.resize(min_run_count+1, 0);
+//					cout << "local resized here to " << min_run_count+1 << endl;
 				}
 
-				// If id matches significant orfeome, increment accordingly
-				if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end()) {
-
-					if (min_run_count > 0)
+				if (min_run_count > 0) {
+				
+					if (*sigOrf == id_seq_it->first) {
 						sig_runs[min_run_count]++;
-					++sigOrf;
-		//				cout << "Significant: " << sig_runs[min_run_count] << endl;
-	//				cout << "next significant seq: " << *sigOrf << endl << endl;
-				} else if (min_run_count > 0) {
-					non_sig_runs[min_run_count]++;
-		//cout << "Not significant: " << non_sig_runs[min_run_count] << endl;
+//						cout << "Significant: " << min_run_count << "," << sig_runs[min_run_count] << endl;
+					} else {
+						non_sig_runs[min_run_count]++;
+//						cout << "Not significant: " << non_sig_runs[min_run_count] << endl;
+					}
 				}
 			}
 		}
+		// If id matches significant orfeome, increment accordingly
+		if (*sigOrf == id_seq_it->first && sigOrf+1 != sigOrf_v.end())
+			++sigOrf;
 	}
 	set_sigOrf_it_pos(sigOrf);
 }

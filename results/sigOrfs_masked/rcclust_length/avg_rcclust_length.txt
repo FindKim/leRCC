@@ -1,22 +1,22 @@
 Calculated average length for rare codon clusters differing by p-Value cut offs.
 
-sig_pruned_masked_p.01_results.txt
-sig avg length: 11.53
-non-sig avg length: 5.94
+sig_pruned_masked_p.0001_rcclust_length.txt
+sig avg length: 6.4
+non-sig avg length: 5.87
 
-sig_pruned_masked_p.05_results.txt
-sig avg length: 11.92
-non-sig avg length: 5.93
+sig_pruned_masked_p.001_rcclust_length.txt
+sig avg length: 6.17
+non-sig avg length: 5.92
 
-sig_pruned_masked_p.0001_results.txt
-sig avg length: 11.86
-non-sig avg length: 5.94
+sig_pruned_masked_p.01_rcclust_length.txt
+sig avg length: 6.09
+non-sig avg length: 5.91
 
-sig_pruned_masked_p1e-05_results.txt
-sig avg length: 11.81
-non-sig avg length: 5.94
+sig_pruned_masked_p.05_rcclust_length.txt
+sig avg length: 6.11
+non-sig avg length: 5.89
 
-sig_pruned_masked_p.001_results.txt
-sig avg length: 11.72
-non-sig avg length: 5.94
+sig_pruned_masked_p1e-05_rcclust_length.txt
+sig avg length: 6.57
+non-sig avg length: 5.87
 

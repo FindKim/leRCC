@@ -7,13 +7,13 @@ pattern = re.compile('sig_pruned_masked_p.+_length\.txt')
 #pattern = re.compile('sig_pruned_masked_p\.05_rcclust_length\.txt')
 LENGTH,SIG_COUNT,NSIG_COUNT = range(3)	# 0, 1, 2
 
-file_out = open('/afs/crc.nd.edu/user/k/kngo/leRCC/sigOrfs_masked/avg_rcclust_length.txt', 'w') # overwrites if exits
+file_out = open('/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/rcclust_length/avg_rcclust_length.txt', 'w') # overwrites if exits
 
 file_out.write('Calculated average length for rare codon clusters differing by p-Value cut offs.')
 file_out.write('\n')
 file_out.write('\n')
 
-for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/"):
+for path, subdirs, files in os.walk("/afs/crc.nd.edu/user/k/kngo/leRCC/results/sigOrfs_masked/rcclust_length/"):
 
 	for filename in files:
 		if pattern.match(filename):

@@ -1,12 +1,12 @@
 Calculated absolute average %Min value for rare codons differing by p-Value cut offs.
 
-sig_pruned_masked_p.001_minvalue.txt
-sig avg min: 15.72
-non-sig avg min: 16.2
-
 sig_pruned_masked_p.0001_minvalue.txt
 sig avg min: 16.09
 non-sig avg min: 16.15
+
+sig_pruned_masked_p.001_minvalue.txt
+sig avg min: 15.72
+non-sig avg min: 16.2
 
 sig_pruned_masked_p.01_minvalue.txt
 sig avg min: 15.74
