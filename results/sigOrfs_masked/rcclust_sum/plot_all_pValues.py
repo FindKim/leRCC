@@ -26,3 +26,5 @@ os.system("sed -i 's/_p\.05/_p1e-05/g' plot_rcclust_sum.gp")
 os.system("sed -i 's/p-Value .*\"/p-Value 1e-05\"/g' plot_rcclust_sum.gp")
 os.system("gnuplot plot_rcclust_sum.gp")
 os.system("ps2pdf sig_pruned_masked_p1e-05_rcclust_sum.ps sig_pruned_masked_p1e-05_rcclust_sum.pdf")
+
+os.system("rm *ps")
